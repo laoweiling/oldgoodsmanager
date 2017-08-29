@@ -1,0 +1,77 @@
+﻿
+ div {
+display: block;
+}
+.name
+{
+    width:140px;
+   color: #666666;
+   font-size: 1.17em;
+    cursor: pointer;
+    margin-left:20px;
+    }
+.sellList li
+  {
+   margin-top: 16px;
+   }
+ .divSell
+   {
+      width:100%;
+      padding-top:10px;
+      height:150px;
+       }
+.spanA
+{
+    font-size:1.17em;
+    background-color:#8e0000;
+    width:50px;
+    height:30px;
+    }
+    
+.spanA a:link { 
+color:White; 
+text-decoration:none;
+} 
+.spanA a:visited { 
+color:White; 
+}  
+.divImage
+{
+    width:140px;
+    float:left
+    }
+.divCommon
+{
+     margin-left:150px;
+     width:100px;
+     padding-top:50px;
+     float:left
+    }
+.pTitle
+{
+    color:Black;
+    font-size: 1.5em;
+    }
+ .pContent
+  {
+        color: #666666;
+        font-size: 1.3em;
+        }
+ .divDelete
+ {
+       margin-left:100px;
+       width:100px;
+       padding-top:70px;
+       float:left;
+     }
+ .divLine
+ {
+     width:100%;
+      height:5px; 
+      background-color:#8e0000
+     }
+#sell
+{
+    background-color:#000000;
+    }
+    

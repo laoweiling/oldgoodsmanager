@@ -1,0 +1,76 @@
+﻿@using OldGoodsManage.Models;
+@{
+    Layout = "~/Views/Shared/_BgLayout.cshtml";
+    Dictionary<long,t_User> dicSenders = ViewBag.dicSenders; 
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <link href="../../style/user.css" rel="stylesheet" type="text/css" />
+    <title>UserReceiveMsg</title>
+    <script type="text/javascript">
+    //全选
+    function checkAll() {
+        var ids = document.getElementsByName('ckbMessage');
+        for (i = 0; i < ids.length; i++)
+            ids[i].checked = true;
+    }
+    //反选
+    function uncheckAll() {
+        var ids = document.getElementsByName('ckbMessage');
+        for (i = 0; i < ids.length; i++) {
+            ids[i].checked = false;
+        }
+    }
+    </script>
+</head>
+<body>
+    @using (Html.BeginForm("DeleteMessage", "Message"))
+    {
+    <div>
+    <table width="100%" border="0" cellspacing="0" cellpadding="0">
+       <tr >   
+          <td height="62" background="../../Images/nav04.gif">
+          </td>
+        </tr>
+  
+      <tr >
+        <td height="40">
+        <br /> &nbsp; &nbsp; &nbsp; &nbsp; 
+        <input id="Button1" type="button" onclick="checkAll()" value="全选"  class="button"/>
+        <input id="Button2" type="button" onclick="uncheckAll()" value="反选" class="button"/>
+        &nbsp; &nbsp; &nbsp; &nbsp; 
+        <input id="Submit" type="submit" name="submit" onclick = "return confirm('确认删除？')" value="删除"class="button"/>
+        <br />
+        </td>
+      </tr>  
+    </table>
+                    
+
+    <table width="100%">
+      <tr  align="center">
+        <td height="20" colspan="4" style="font-size: x-large;"  bgcolor="#EEEEEE"class="tablestyle_title">收  信  箱</td>
+      </tr>
+      <tr  style="font-size: large;font-weight:bold;">
+        <td  class="td1"  >选择</td>
+        <td   class="td1">发件人</td>  
+        <td   class="td1">内容</td>  
+        <td   class="td1">日期</td>  
+      </tr>
+        @foreach (t_Message message in (List<t_Message>)ViewBag.messageList)
+        {
+             <tr style="font-size: larger;">
+                <td class="td1"><input type="checkbox" name="ckbMessage" value="@message.messageID"/></td>
+                <td class="td1">@dicSenders[message.messageID].userName</td>
+                <td class="td1">@message.message</td>
+                <td class="td1">@message.messageTime.ToString("yyyy-MM-dd")</td>
+             </tr>
+        }
+    </table>
+    </div>
+    }
+</body>
+</html>

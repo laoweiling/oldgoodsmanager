@@ -1,0 +1,151 @@
+﻿@model  OldGoodsManage.Models.t_User
+
+@{
+    ViewBag.Title = "添加用户";
+    Layout = "../Shared/_BgLayout.cshtml";
+}
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>用户登录</title>
+<link href="../../style/user.css"   type="text/css"  rel="Stylesheet" />
+</head>
+<body   >
+<div class="MainDiv" >
+
+<table  border="0" cellpadding="0" cellspacing="0" class="CContent" >
+  @using (Html.BeginForm())
+  {
+  <tr >
+      <th class="tablestyle_title" >后台用户添加页面</th>
+  </tr>
+  <tr >
+    <td class="CPanel" >
+		
+		<table border="0" cellpadding="0" cellspacing="0" style="width:100%" >
+		<tr>
+			<td align="left" >
+                <input id="Submit1" type="submit" value="后台用户管理" name="submit" class="button" />	
+               
+				<input type="button" name="Submit2" value="返回" class="button" onclick="window.history.go(-1);"/>			</td>
+		</tr>
+       
+           
+            @Html.ValidationSummary(true)
+		<tr align="center">
+			<td class="TablePanel">
+            </td>
+		</tr>
+		<tr>
+			<td width="100%">
+				<fieldset style="height:450px;">
+				<legend>添加用户</legend>
+					  <table border="0" cellpadding="2" cellspacing="1" style="width:100%">
+					 <tr></tr> <tr></tr>
+					  <tr>
+					    <td nowrap="nowrap" align="right" width="15%">@Html.LabelFor(model => model.loginName):</td>
+					    <td width="35%"> @Html.EditorFor(model => model.loginName)
+				        <span  class="editor-field"  style=" color:Red">* @Html.ValidationMessageFor(model => model.loginName)</span></td>
+
+					    <td width="16%" align="right" nowrap="nowrap"> @Html.LabelFor(model => model.userName):</td>
+					    <td width="34%">@Html.EditorFor(model => model.userName)
+                        <span  class="editor-field"  style=" color:Red">*@Html.ValidationMessageFor(model => model.userName)</span>
+                        </td>
+					  </tr> 
+
+                      <tr>
+					    <td nowrap="nowrap" align="right" width="15%">@Html.LabelFor(model => model.password):</td>
+					    <td width="35%"> @Html.EditorFor(model => model.password)
+				        <span  class="editor-field"  style=" color:Red">* @Html.ValidationMessageFor(model => model.password)</span></td>
+
+					    <td width="16%" align="right" nowrap="nowrap">确认密码：</td>
+					    <td width="34%"> <input id="Text1" type="password" name="PwdAgain" />
+                        <span  class="editor-field"  style=" color:Red">*</span>
+                        </td>
+					  </tr> 
+
+                      <tr>
+					    <td nowrap="nowrap" align="right" width="15%">性别：</td>
+					    <td width="35%"> 
+                        <input id="sexMan" type="radio"  name="sexRadio"  value="1"  /> 男
+                        <input id="sexWomen" type="radio" name="sexRadio"  value="0"/>女
+				        </td>
+
+					    <td width="16%" align="right" nowrap="nowrap"> 用户角色:</td>
+					    <td width="34%">
+                         @*<select name="role"> 
+                            @foreach (OldGoodsManage.Models.t_Role r in @ViewBag.RoleID as List<OldGoodsManage.Models.t_Role>) 
+                             { 
+                               
+                                   <option  value="@r.roleID">@r.roleName</option> 
+                               
+                             } 
+                       </select>*@
+                        <input id="superRole" type="radio"  name="role"  value="2"/>超级管理员
+                       <input id="generalRole" type="radio"  name="role"  value="3"/> 普通管理员
+                        @* @Html.DropDownList("roleName", @ViewBag.RoleID as IEnumerable<SelectListItem>)*@ 
+                        <span  class="editor-field"  style=" color:Red">*@Html.ValidationMessageFor(model => model.roleID)</span>
+                        </td>
+					  </tr> 
+
+                       <tr>
+					    <td nowrap="nowrap" align="right" width="15%">@Html.LabelFor(model => model.email):</td>
+					    <td width="35%"> @Html.EditorFor(model => model.email)
+				        <span  class="editor-field"  style=" color:Red">@Html.ValidationMessageFor(model => model.email)</span></td>
+
+					    <td width="16%" align="right" nowrap="nowrap"> @Html.LabelFor(model => model.tel):</td>
+					    <td width="34%">@Html.EditorFor(model => model.tel)
+                        <span  class="editor-field"  style=" color:Red">*@Html.ValidationMessageFor(model => model.tel)</span>
+                        </td>
+					  </tr> 
+
+                      <tr>
+					    <td nowrap="nowrap" align="right" width="15%">@Html.LabelFor(model => model.address):</td>
+					    <td width="35%"> @Html.EditorFor(model => model.address)
+				        <span  class="editor-field"  style=" color:Red">@Html.ValidationMessageFor(model => model.address)</span></td>
+					  </tr> 
+                     <tr>
+					   <td align="right"></td>
+					   <td colspan="3">
+                      </td>
+					  </tr>
+                      <tr></tr>
+					  <tr>
+					   <td align="right">@Html.LabelFor(model => model.remarks)</td>
+					   <td colspan="3"><textarea name="remarks" cols="100" rows="8"></textarea> 
+                        @Html.ValidationMessageFor(model => model.remarks)</td>
+					  </tr>
+                      
+					  </table>
+			    <br />
+				</fieldset>			
+			</td>
+		</tr>
+        <tr >
+			<td colspan="2" align="center" height="50px">
+                <input id="Submit2" type="submit" value="添加" name="submit" class="button"/>
+			
+			 <input id="Reset1" type="reset" value="重置" class="button" /></td>
+		</tr>
+   	</table>
+	
+	
+	 </td>
+  </tr>
+  
+  
+  }	
+		
+		
+
+</table>
+
+</div>
+
+</body>
+</html>
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

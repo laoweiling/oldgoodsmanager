@@ -1,0 +1,200 @@
+﻿@model OldGoodsManage.Models.t_Goods
+
+@{
+    ViewBag.Title = "editGoods";
+    Layout = "~/Views/Shared/_FgLayout.cshtml";
+}
+
+<h2>编辑商品信息</h2>
+
+@using (Html.BeginForm("editGoods", "Goods", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    @Html.ValidationSummary(true)
+    <link rel="stylesheet" type="text/css" href="~/style/fabu.css" />  
+    <style>
+.perview {width:600px;background:#fff;font-size:12px; border-collapse:collapse;}
+.perview td, .perview th {padding:5px;border:1px solid #ccc;}
+.perview th {background-color:#f0f0f0; height:20px;}
+.perview a:link, .perview a:visited, .perview a:hover, .perview a:active {color:#00F;}
+.perview table{ width:100%;border-collapse:collapse;}
+</style>
+    <script src="~/Scripts/CJL.0.1.min.js"></script>
+    <script src="~/Scripts/QuickUpload.js"></script>
+    <script src="~/Scripts/ImagePreview.js"></script>  
+    <script type="text/javascript">// <![CDATA[
+        $(document).ready(function () {
+            $("select[name='GoodsType']").change(function () {
+                var url = "/Goods/GetCategory/" + $("#GoodsType").val() + "/"; //规则是控制器/方法/参数
+                $.getJSON(url, function (data) {
+                    $('#GoodsSubType').html('');
+                    $.each(data, function (i, item) {
+                        $('#GoodsSubType').append($("<option></option>").val(item.categoryID).html(item.categoryName));
+                    });
+                });
+            });
+        });// ]]>
+</script> 
+    <fieldset>
+        @Html.HiddenFor(model => model.goodsID)
+        @Html.HiddenFor(model => model.customerID)
+        @Html.HiddenFor(model => model.releaseTime)
+        @Html.HiddenFor(model => model.goodsStatus)
+        @Html.HiddenFor(model => model.validTime)
+          <table id="table0" cellpadding="0" cellspacing="0">
+        <tr>
+             <td height="100" colspan="4"><blockquote>
+              <p style="margin-left:60%"><img src="~/Images/Fabu.png" width="37" height="37" style="margin-left:50px" /></p>
+               <p  style="margin-left:60%">----------------------------------</p>
+               <p  style="margin-left:60%"><span class="STYLE3 STYLE5">编辑商品</span></p>
+               </blockquote>
+               </td>
+         </tr>
+            <tr>
+         <td class="td_margin"></td>
+         <td height="30" style="background-color:white" colspan="4" ><p><strong>请上传图片</strong>（<span class="STYLE4">最多3张,每张不能超过1M</span>）</p>
+           <u></u>
+	       <hr></td>
+            <td class="td_margin"></td></tr>
+        <tr style="margin-top:1px"><td class="td_margin" height="1"></td>
+             <td colspan="4" style="background-color:White">
+    <table class="perview" id="table_image" cellpadding="0" cellspacing="0" style="margin-top:0px">
+	<tr>
+		<th align="right"> 选择图片： </th>
+		<td width="75%" align="left"> <div><input type="button" onclick="addfile()" value="添加图片" /></div></td>
+       </tr>
+	<tr> 
+		<td colspan="2"><table cellpadding="0" cellspacing="0">
+				<thead>
+					<tr>
+						<th> 文件路径 </th>
+						<th width="30%"> 预览图 </th>
+						<th width="20%"> 操作 </th>
+					</tr>
+				</thead>
+				<tbody id="idPicList">
+					<tr style="display:inline">
+						<td><input type="file" name="image1" onchange="viewimage('image1','picimage1')" id="image1"/></td>
+						<td align="center"><img id="picimage1" style="width:100px; height:100px" src="/@Html.DisplayFor(goodsImage => Model.goodsImage.Split(',')[0])" /></td>
+						<td align="center"><a onclick="RemoveImage('image1','picimage1',1)" href="#">移除</a></td>
+					</tr>
+                    <tr style="display:inline">
+                        <td><input type="file" name="image2" id="image2" onchange="viewimage('image2','picimage2')" /></td>
+						<td align="center"><img id="picimage2" style="width:100px; height:100px" src="/@Html.DisplayFor(goodsImage => Model.goodsImage.Split(',')[1])"/></td>
+						<td align="center"><a onclick="RemoveImage('image2','picimage2',2)" href="#">移除</a></td>
+                    </tr>
+                    <tr style="display:inline">
+                        <td><input type="file" name="image3" id="image3" onchange="viewimage('image3','picimage3')" /></td>
+						<td align="center"><img id="picimage3" style="width:100px; height:100px" src="/@Html.DisplayFor(goodsImage => Model.goodsImage.Split(',')[2])"/></td>
+						<td align="center"><a onclick="RemoveImage('image3','picimage3',3)" href="#">移除</a></td>
+                    </tr>
+				</tbody></table>
+			</td></tr>
+</table>
+             </td>
+             <td class="td_margin"></td></tr>
+              <tr>
+         <td class="td_margin"></td>
+         <td height="30" style="background-color:white" colspan="4" ><p><strong>商品基本信息</strong>（<span class="STYLE4">*必填</span>）</p>
+           <u></u>
+	       <hr></td>
+            <td class="td_margin"></td></tr> 
+         <tr><td class="td_margin"></td>
+            <td align="left"class="td_name">
+            <div align="left" style="margin-left:20px;"><strong>商品名称: </strong> 
+            </div></td>
+            <td class="td_content">
+             <div style="color:Red" align="left" class="editor-field">  
+              @Html.EditorFor(model => model.goodsTitle)*
+              @Html.ValidationMessageFor(model => model.goodsTitle)</div></td>
+            <td align="left"class="td_name">
+             <div align="left"><strong>交易地点：</strong></div></td>
+            <td class="td_content">
+             <div style="color:Red" align="left">  
+              @Html.EditorFor(model => model.tradeAddress)*
+              @Html.ValidationMessageFor(model => model.tradeAddress)</div></td>
+              <td class="td_margin"></td></tr>
+        <tr><td class="td_margin"></td>
+            <td align="left" class="td_name">
+             <div align="left" style="margin-left:20px"><strong>价格：</strong></div></td>   
+            <td algin="left" class="td_content">
+             <div style="color:Red">  
+             @Html.EditorFor(model => model.goodsPrice)*
+             @Html.ValidationMessageFor(model => model.goodsPrice)</div></td>
+            <td align="left" class="td_name"> 
+             <div align="left"><strong>分类：</strong></div></td>  
+            <td algin="left" class="td_content">
+             <div algin="left">
+              商品大类：@Html.DropDownList("GoodsType")
+              商品小类：@Html.DropDownList("GoodsSubType")</div></td>    
+            <td class="td_margin"></td></tr>
+         <tr><td class="td_margin"></td>
+            <td align="left"class="td_name">
+              <div style="margin-left:20px;"><strong>所在学校：</strong></div></td>
+              <td class="td_content" colspan="3">@Html.DropDownList("SchoolType")</td>
+              <td class="td_margin">
+          </tr>
+         <tr><td class="td_margin"></td>
+             <td align="left"class="td_name">
+              <div align="left"style="margin-left:20px;"><strong> 商品详情：</strong></div></td>
+             <td class="td_content" colspan="3">
+              <div style="color:Red"> 
+              @Html.TextAreaFor(model => model.goodsInfo)*
+              @Html.ValidationMessageFor(model => model.goodsInfo)</div></td>         
+             <td class="td_margin"></td></tr>
+        <tr><td class="td_margin"></td>
+            <td class="td_name" colspan="4">
+             <p><strong>联系方式</strong>（<span class="STYLE4">至少选填一项</span>）</p>
+		     <u></u>
+	         <hr></td>
+            <td class="td_margin"></td></tr>
+              <tr><td class="td_margin"></td>
+                  <td class="td_name">
+                      <div align="left" style="margin-left: 20px"><strong>QQ：</strong>
+                      </div></td>
+                  <td class="td_content">
+                      <div style="color: Red">
+                          @Html.EditorFor(model => model.contactQQ)
+                          @Html.ValidationMessageFor(model => model.contactQQ)</div></td>
+                  <td class="td_name">
+                      <div align="left"><strong>Tel：</strong>
+                      </div></td>
+                  <td class="td_content">
+                      <div style="color: Red">
+                          @Html.EditorFor(model => model.contactTel)
+                          @Html.ValidationMessageFor(model => model.contactTel)</div></td>
+                  <td class="td_margin"></td></tr>
+                          <tr><td class="td_margin"></td>
+            <td class="td_name">
+             <div align="left" style="margin-left:20px"><strong>@Html.LabelFor(model => model.remarks)</strong> </div></td> 
+            <td class="td_content">
+               <div style="color:Red"> 
+                 
+                 @Html.EditorFor(model => model.remarks)</div></td> 
+            <td class="td_name">
+                <div align="left"><strong></strong>
+                </div></td>
+            <td class="td_content">
+                <div style="color: Red">
+                     
+                     </div></td>
+            <td class="td_margin"></td></tr>
+              <tr><td class="td_margin"></td>
+          <td height="50" align="left" colspan="2"><div align="left" style="margin-left:150px">
+                               <input type="submit" name="Action" value="保存"/>
+                       </div>       
+                       </td>
+
+                       <td class="td_margin"></td>
+                    </tr>
+         <tr><td colspan="6" height="50">
+         <div style="margin-left:90px">
+    @Html.ActionLink("Back to List", "Index")
+</div>
+         </td></tr>
+         </table>
+      </fieldset>
+}
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

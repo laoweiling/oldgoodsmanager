@@ -1,0 +1,158 @@
+@model  OldGoodsManage.Models.t_User
+
+@{
+    ViewBag.Title = "后台用户信息";
+    Layout = "../Shared/_BgLayout.cshtml";
+    Dictionary<long, string> roledict = ViewBag.RoleDict; 
+      
+}
+  @using (Html.BeginForm("userList", "User"))
+  {
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312" />
+<title>后台用户管理</title>
+<link href="../../style/user.css"   type="text/css"  rel="Stylesheet" />
+<script type="text/javascript" language="javascript" >
+//全选
+    function checkAll() {
+        var ids = document.getElementsByName('chkId');
+        for (i = 0; i < ids.length; i++)
+            ids[i].checked = true;
+    }
+    //反选
+    function uncheckAll() {
+        var ids = document.getElementsByName('chkId');
+        for (i = 0; i < ids.length; i++) {
+            ids[i].checked = false;
+        }
+    }
+
+ 
+</script>
+</head>
+<body>
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+
+  <tr >   
+          <td height="62" background="../../Images/nav04.gif">
+		   <table width="98%" border="0" align="center" cellpadding="0" cellspacing="0">
+		    <tr>
+			  <td width="24"><img src="../../Images/ico07.gif" width="20" height="18"  alt=""/></td>
+			  <td width="420">
+                  用户姓名：<input id="Text1" type="text" name="selectUserName"/>
+                  <input id="Submit1" type="submit" class="right-button02" name="submit" value="查询" />
+                   <input type="button" name="Submit2" value="返回" class="right-button02" onclick="window.history.go(-1);"/>
+              </td>
+			  
+               <td>
+                 <input id="Submit2" type="submit" value="添加后台用户" name="submit"  class="right-button08" />
+                 	
+              </td>
+              
+		     </tr>
+             
+              
+             
+           </table>
+          </td>
+  </tr>
+  
+  <tr >
+
+                <td height="40">
+                <br />
+               &nbsp; &nbsp; &nbsp; &nbsp; 
+                    <input id="Button1" type="button" onclick="checkAll()" value="全选"  class="button"/>
+                    <input id="Button2" type="button" onclick="uncheckAll()" value="反选" class="button"/>
+                    &nbsp; &nbsp; &nbsp; &nbsp; 
+                    <input id="Submit" type="submit" name="submit" onclick = "return confirm('确认删除？')" value="删除"class="button"/>
+                <br />
+                <table width="100%" border="0" cellpadding="4" cellspacing="1" bgcolor="#464646" class="newfont03">
+                
+                
+				    <tr>
+                    <td height="20" colspan="14" align="center" bgcolor="#EEEEEE"class="tablestyle_title"> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;客户详细列表 &nbsp;</td>
+                    </tr>
+                    <tr>
+                     <td   class="td1">选择</td>
+				   <td   class="td1">@Html.DisplayNameFor(model => model.userID)</td>
+					<td   class="td1">@Html.DisplayNameFor(model => model.loginName)</td>
+                    <td   class="td1">@Html.DisplayNameFor(model => model.userName)</td>
+                    <td   class="td1"> @Html.DisplayNameFor(model => model.registerTime)</td>
+                    <td   class="td1">角色</td>
+					<td  class="td1">@Html.DisplayNameFor(model => model.password)</td>
+					<td   class="td1">性别</td>
+                    <td  class="td1">@Html.DisplayNameFor(model => model.address)</td>
+                    <td   class="td1">@Html.DisplayNameFor(model => model.email)</td>
+                    <td  class="td1">@Html.DisplayNameFor(model => model.tel)</td>
+                    <td  class="td1">@Html.DisplayNameFor(model => model.remarks)</td>
+                    <td  class="td1">操作</td>
+                  </tr>
+                  @foreach (OldGoodsManage.Models.t_User item in ViewBag.DataList as List<OldGoodsManage.Models.t_User>)
+                  {
+                    <tr  bgcolor="#FFFFFF">
+                    <td>
+                 @* <input type="checkbox" name="chkId" id="chkrId" />*@
+                  @*@Html.CheckBox("chkId",item.userID)*@
+                  <input type="checkbox" id="chkId" name="chkId" value="@Html.Encode(item.userID)" />
+                    </td>
+                     <td>
+                      @Html.DisplayFor(modelItem => item.userID)
+                      </td>
+                      <td>
+                      @Html.DisplayFor(modelItem => item.loginName)
+                      </td>
+                      <td>
+                      @Html.DisplayFor(modelItem => item.userName)
+                      </td>
+                      <td>
+                      @Html.DisplayFor(modelItem => item.registerTime)
+                      </td>
+                      @if(roledict.ContainsKey(item.roleID))
+                      {      
+                        <td>@roledict[item.roleID]</td>
+                      }
+                       <td>
+                      @Html.DisplayFor(modelItem => item.password)
+                      </td>
+                      @if (item.sex == 0)
+                      {
+                       <td> 女</td>
+                      }
+                      @if (item.sex == 1)
+                      { 
+                      <td>男 </td>
+                      }
+                       <td>
+                      @Html.DisplayFor(modelItem => item.address)
+                      </td>
+                       <td>
+                      @Html.DisplayFor(modelItem => item.email)
+                      </td>
+                       <td>
+                      @Html.DisplayFor(modelItem => item.tel)
+                      </td>
+                       <td>
+                      @Html.DisplayFor(modelItem => item.remarks)
+                      </td>
+                       <td>
+                         @Html.ActionLink("编辑", "EditUser", new { id = item.userID }) |
+                         @Html.ActionLink("修改密码", "ChangePwd", new { id = item.userID }) |
+                         @Html.ActionLink("详细信息", "UserDetails", new { id = item.userID }) |
+                          <a id="alink" onclick = "return confirm('确认删除？');" href="@String.Format("{0}", @Url.Action("deleteUser", "User", new { id = item.userID }))">删除</a>
+                       </td>
+                      
+                  </tr>
+                  }
+                </table>
+                </td>
+  </tr>    
+
+
+ 
+</table>
+
+</body>
+</html>
+  }

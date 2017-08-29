@@ -1,0 +1,167 @@
+<html>
+<head>
+<title>二手商品管理系统后台管理</title>
+<meta http-equiv=Content-Type content="text/html; charset=gb2312">
+<meta http-equiv=Pragma content=no-cache>
+<meta http-equiv=Cache-Control content=no-cache>
+<meta http-equiv=Expires content=-1000>
+<link href="~/style/admin.css" type="text/css" rel="stylesheet">
+<script type="text/javascript">
+    function expand(el) {
+        childObj = document.getElementById("child" + el);
+
+        if (childObj.style.display == 'none') {
+            childObj.style.display = 'block';
+        }
+        else {
+            childObj.style.display = 'none';
+        }
+        return;
+    }
+
+    //打开发送消息页面并设置大小
+    function openwin(url) {
+        var newwin = window.open(url, "发送消息", "width=500,height=410");
+        newwin.focus();
+        return (newwin);
+    }
+
+</script>
+@RenderSection("Styles", required: false)
+</head>
+<body>
+<div id="head">
+<table cellSpacing=0 cellPadding=0 width="100%" 
+background="~/Images/header_bg.jpg" border=0>
+  <tr height=56>
+    <td width="260"><img height=56 src="~/Images/bglogo.gif" width="260"></td>
+    <td style="FONT-WEIGHT:bold; COLOR:#fff; PADDING-TOP:20px" align="center">当前用户：admin &nbsp;&nbsp; <a style="COLOR: #fff" 
+      href="" target="main">修改口令</a> &nbsp;&nbsp; <a style="COLOR: #fff" onclick="if (confirm('确定要退出吗？')) return true; else return false;" 
+      href="" target="top">退出系统</a> 
+    </td>
+    <td align="right" width="268">
+    <img height=56 src="~/Images/bglogo2.jpg" width=268></td></tr></table>
+</div>
+
+<div id="menu" style="float:left;width=170">
+<table style="height:100%; border-collapse:collapse; width:170; border:0;" background="~/Images/menu_bg.jpg";>
+  <tr>
+    <td align="center" valign="top">
+      <table style="border-collapse:collapse; width:100%; border:0;">   
+        <tr>
+          <td height=10></td></tr></table>
+      <table style="border-collapse:collapse; width:150px; border:0">
+        <tr height=22>
+          <td style="PADDING-LEFT: 30px" background="~/Images/menu_bt.jpg">
+          <A class="menuParent" onclick=expand(1) href="javascript:void(0);">商品管理</a></td></tr>
+        </table>
+        <table style="border-collapse:collapse; width:150px; border:0">
+        <tr height=4><td></td></tr></table>
+      <table id="child1" style="DISPLAY: block" cellSpacing=0 cellPadding=0 width=150 border=0>
+         <tr height=20>
+          <td align="center" width=30><img height=9 src="~/Images/menu_icon.gif" width=9></td>
+         <td>@Html.ActionLink("商品查看", "Index", "GoodsStatus",new {status = -1}, new { @class = "menuChild", target = "_self" })</td></tr>
+        <tr height=20>
+          <td align="center" width=30><img height=9 src="~/Images/menu_icon.gif"></td>
+           <td>@Html.ActionLink("商品审核", "Index", "GoodsStatus", new { status = 0 }, new { @class = "menuChild", target = "_self" })</td></tr>
+        <tr height=20>
+          <td align="center" width=30><img height=9 src="~/Images/menu_icon.gif" width=9></td>
+          <td>@Html.ActionLink("商品冻结", "Index", "GoodsStatus", new { status = 4 }, new { @class = "menuChild", target = "_self" })</td></tr>
+        <tr height=20>
+          <td align="center" width=30><img height=9 src="~/Images/menu_icon.gif" width=9></td>
+          <td>@Html.ActionLink("商品下架", "Index", "GoodsStatus", new { status = 3 }, new { @class = "menuChild", target = "_self" })</tr></tr>  
+        <tr height=20>
+          <td align="center" width=30><img height=9 src="~/Images/menu_icon.gif"></td>
+          <td>@Html.ActionLink("商品分类管理", "ShowFirTitle", "Category", "", new { @class = "menuChild",target="_self"})</td></tr>
+        <tr height=4><td colSpan=2></td></tr></table>
+      <table style="border-collapse:collapse; width:150px; border:0">   
+        <tr height=22>
+          <td style="PADDING-LEFT: 30px" background="~/Images/menu_bt.jpg">
+          <A class="menuParent" onclick=expand(2) href="javascript:void(0);">用户管理</a></td></tr>
+        </table>
+      <table style="border-collapse:collapse; width:150px; border:0">
+        <tr height=4><td></td></tr></table>
+         <table id="child2" style="DISPLAY: block" cellSpacing=0 cellPadding=0 width=150 border=0>
+        <tr height=20>
+          <td align="center" width=30><img height=9 src="~/Images/menu_icon.gif"></td>
+          <td>@Html.ActionLink("前台用户管理", "CustomerList", "Customer", "", new { @class = "menuChild" })</td></tr>
+        <tr height=20>
+          <td align="center" width=30><img height=9 src="~/Images/menu_icon.gif" width=9></td>
+          <td>@Html.ActionLink("后台用户管理", "UserList", "User", "", new { @class = "menuChild" })</td></tr>
+        <tr height=4><td colSpan=2></td></tr></table>
+      <table style="border-collapse:collapse; width:150px; border:0">   
+        <tr height=22>
+          <td style="PADDING-LEFT: 30px" background="~/Images/menu_bt.jpg">
+          <A class="menuParent" onclick=expand(3) href="javascript:void(0);">权限管理</a></td></tr>
+        </table>
+     <table style="border-collapse:collapse; width:150px; border:0">
+        <tr height=4><td></td></tr></table>
+         <table id="child3" style="DISPLAY: block" cellSpacing=0 cellPadding=0 width=150 border=0>
+        <tr height=20>
+          <td align="center" width=30><img height=9 src="~/Images/menu_icon.gif"></td>
+          <td>@Html.ActionLink("角色管理", "RoleList", "role", "", new { @class = "menuChild" })</td></tr>
+        <tr height=20>
+          <td align="center" width=30><img height=9 src="~/Images/menu_icon.gif" width=9></td>
+          <td><A class="menuChild" href="#" target=main>功能分配</A></td></tr>
+        <tr height=4><td colSpan=2></td></tr></table>
+    
+      <table style="border-collapse:collapse; width:150px; border:0">   
+        <tr height=22>
+          <td style="PADDING-LEFT: 30px" background="~/Images/menu_bt.jpg">
+          <A class="menuParent" onclick=expand(3) href="javascript:void(0);">消息管理</a></td></tr>
+        </table>    
+      <table style="border-collapse:collapse; width:150px; border:0">
+        <tr height=4><td></td></tr></table>
+        <table id="child4" style="DISPLAY: block" cellSpacing=0 cellpadding=0 width=150 border=0>
+        <tr height=20>
+            <td align="center" width=30><img height=9 src="~/Images/menu_icon.gif" /></td>
+            <td><a href="#" onclick="javascript:openwin('/Message/UserSendMsg')">发送消息</a></td>
+        </tr>
+        <tr height=20>
+            <td align="center" width=30><img height=9 src="~/Images/menu_icon.gif" /></td>
+            <td>@Html.ActionLink("已发送的消息", "MessageList", "Message", "", new {@class= "menuChild" })</td>
+        </tr>
+        <tr height=20>
+            <td align="center" width=30><img height=9 src="~/Images/menu_icon.gif" /></td>
+            <td>@Html.ActionLink("我的收信箱", "UserReceiveMsg", "Message", "", new { @class = "menuChild" })</td>
+        </tr>
+     <table style="border-collapse:collapse; width:150px; border:0">   
+        <tr height=22>
+          <td style="PADDING-LEFT: 30px" background="~/Images/menu_bt.jpg">
+          <A class="menuParent" onclick=expand(4) href="javascript:void(0);">关于我们</a></td></tr>
+        </table>
+     <table style="border-collapse:collapse; width:150px; border:0">
+        <tr height=4><td></td></tr></table>
+     <table id="child5" style="DISPLAY: block" cellSpacing=0 cellPadding=0 width=150 border=0>
+        <tr height=20>
+          <td align="center" width=30><img height=9 src="~/Images/menu_icon.gif"></td>
+          <td>@Html.ActionLink("公司信息管理", "Index1", "SiteInfo", "", new { @class = "menuChild" })</td></tr>
+        <tr height=20>
+          <td align="center" width=30><img height=9 src="~/Images/menu_icon.gif" width=9></td>
+          <td><A class="menuChild" href="#" target=main>招聘信息管理</A></td></tr>
+        <tr height=20>
+            <td align="center" width=30><img height=9 src="~/Images/menu_icon.gif"/></td>
+            <td>@Html.ActionLink("反馈信息管理","FeedbackList","Feedback","",new{@class= "menuChild"})</td></tr>
+        <tr height=4><td colSpan=2></td></tr></table>
+        
+     <table style="border-collapse:collapse; width:150px; border:0">   
+         <tr height=22>
+          <td style="PADDING-LEFT: 30px" background="~/Images/menu_bt.jpg">
+          <A class="menuParent" onclick=expand(5) href="javascript:void(0);">相关信息配置</a></td></tr>
+     </table>
+     <table style="border-collapse:collapse; width:150px; border:0">
+        <tr height=4><td></td></tr></table>
+         <table id="child6" style="DISPLAY: block" cellSpacing=0 cellPadding=0 width=150 border=0>
+        <tr height=20>
+          <td align="center" width=30><img height=9 src="~/Images/menu_icon.gif" width=9></td>
+          <td><A class="menuChild" href="#" target=main>@Html.ActionLink("学校管理", "ShowSchoolInfo", "School", "", new { @class = "menuChild" })</A></td></tr>
+        <tr height=4><td colSpan=2></td></tr></table>
+    <td width=1 bgColor=#d1e6f7></td></tr></table>
+</div>
+<div id="main" style="float:left;width:1150px">
+@RenderBody()
+@Scripts.Render("~/bundles/jquery")
+    @RenderSection("scripts", required: false)
+</div>
+</body>
+</html>

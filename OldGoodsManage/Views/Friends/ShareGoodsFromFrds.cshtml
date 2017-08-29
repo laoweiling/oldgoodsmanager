@@ -1,0 +1,60 @@
+﻿@{
+    ViewBag.Title = "ShareGoodsFromFrds";
+    Layout = "~/Views/Shared/personalCenter.cshtml";
+    Dictionary<long, OldGoodsManage.Models.t_Goods> dicGoods = ViewBag.dicGoods;
+    Dictionary<long, OldGoodsManage.Models.t_Customer> dicCustomer = ViewBag.dicCustomer;
+}
+
+@section Styles{
+    @Styles.Render("~/style/shareGoodsFromFrds.css")
+}
+<div style="width:100%;height:30px;background-color:#8e0000">
+<table style="width:100%;height:100%;text-align:center;color:White;font-size:1.17em;">
+<tr id="trFriends">
+<td class="myFriends">@Html.ActionLink("我的好友", "MyFriends", "Friends")</td>
+<td class="shareToFriends">@Html.ActionLink("我分享给好友的商品", "ShareGoodsToFrds", "Friends")</td>
+<td class="shareFromFriends">@Html.ActionLink("好友分享给我商品", "ShareGoodsFromFrds", "Friends")</td></tr>
+</table>
+</div>
+<div>
+<ul class="sellList">
+@foreach (OldGoodsManage.Models.t_Friends t_friends in ViewBag.friendsList)
+{
+    if (string.IsNullOrEmpty(t_friends.goodsFromFriends))
+    {
+        continue;
+    }
+    string[] arrGoods = t_friends.goodsFromFriends.Split(',');
+    foreach (string goods in arrGoods)
+	{
+        long goodsId = Int64.Parse(goods);
+    <li>
+        <div class="divSell">
+        <div class="divImage">
+        <a href="@Url.Action("GoodsDetails", "Goods", new { id = goodsId })"><img alt="商品图片" src="~/@dicGoods[goodsId].goodsImage.Split(',')[0]" width="140px" height="130" title="查看详情"/></a> 
+        <br />
+        <a href="@Url.Action("GoodsDetails", "Goods", new { id = goodsId })"><span class="name">@dicGoods[goodsId].goodsTitle</span></a>
+        </div>
+        <div class="divCommon">
+        <span>
+        <p class="pTitle">好友</p>
+        <p class="pContent">@dicCustomer[t_friends.friendsId].loginName</p>
+        </span>
+        </div> 
+        <div class="divCommon" >
+        <span>
+        <p class="pTitle">联系方式</p>
+        <p class="pContent">@dicCustomer[t_friends.friendsId].tel</p>
+        </span>
+        </div>
+        <div class="divDelete">
+        <span class="spanA"><a onclick = "return confirm('确认删除？');" href=@String.Format("{0}", @Url.Action("DeleteGoods", "Goods"))>删除</a></span>
+        </div>
+        </div>
+        <div class="divLine"></div>
+    </li>     
+	}
+    
+}
+</ul>
+</div>

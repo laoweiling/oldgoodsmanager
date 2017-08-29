@@ -1,0 +1,35 @@
+﻿@model OldGoodsManage.Models.t_Comment
+
+@{
+    ViewBag.Title = "customerMessage";
+    Layout = "~/Views/Shared/personalCenter.cshtml";
+}
+@section Styles{
+  @Styles.Render("~/style/customerMessage.css")
+}
+<div class="divTitle">
+<table class="tableMain">
+<tr>
+<td class="funcTd" >@Html.ActionLink("系统消息", "SystemMessage", "Customer")</td>
+<td class="funcTd" style=" background-color:#000000;">@Html.ActionLink("商品评论", "CustomerMessage", "Customer")</td>
+</tr>
+</table>
+</div>
+<div id="div1">
+<ul>
+@foreach (var item in @ViewBag.goodsList as List<OldGoodsManage.Models.t_Goods>)
+{
+ <li style="margin-top:20px">
+<div id="div2">
+ <span id="span1">@item.goodsTitle&nbsp
+ </span>
+ <span id="span2">
+ <a href="@Url.Action("GoodsDetails", "Goods", new{id=@item.goodsID})" style="cursor:pointer">点击查看评论详情</a>
+ </span>
+</div>
+</li> 
+}
+
+</ul>
+ 
+</div>

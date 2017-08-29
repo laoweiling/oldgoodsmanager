@@ -1,0 +1,179 @@
+@model  OldGoodsManage.Models.t_Customer
+
+@{
+    ViewBag.Title = "所有前台用户信息";
+    Layout = "../Shared/_BgLayout.cshtml";
+}
+
+ @using (Html.BeginForm())
+  {
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312" />
+<title>前台用户管理</title>
+<link href="../../style/user.css"   type="text/css"  rel="Stylesheet" />
+<script type="text/javascript" language="javascript" >
+    //全选
+    function checkAll() {
+        var ids = document.getElementsByName('chkId');
+        for (i = 0; i < ids.length; i++)
+            ids[i].checked = true;
+    }
+    //反选
+    function uncheckAll() {
+        var ids = document.getElementsByName('chkId');
+        for (i = 0; i < ids.length; i++) {
+            ids[i].checked = false;
+        }
+    }
+
+ 
+</script>
+</head>
+<body>
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+
+  <tr >  
+          <td height="62" background="../../Images/nav04.gif">
+		   <table width="98%" border="0" align="center" cellpadding="0" cellspacing="0">
+		    <tr>
+			  <td width="24"><img src="../../Images/ico07.gif" width="20" height="18"  alt=""/></td>
+			  <td width="420">
+                  <select id="Select1" name="selectCustomer">
+                       <option>全部</option>
+                      <option>用户类型</option>
+                      <option>用户姓名</option>
+                      <option>是否被锁定</option>
+                  </select><input id="Text1" type="text" name="selectBox"/>
+                  <input id="Submit1" type="submit" class="right-button02" name="submit" value="查询" />
+              </td>
+              <td>
+			  <input type="button" name="Submit2" value="返回" class="right-button02" onclick="window.history.go(-1);"/>	
+              </td>
+             
+		     </tr>
+             
+              
+             
+           </table>
+          </td>
+  </tr>
+  
+  <tr >
+
+                <td height="40">
+                 &nbsp; &nbsp; &nbsp; &nbsp; 
+                    <input id="Button1" type="button" onclick="checkAll()" value="全选"  class="button"/>
+                    <input id="Button2" type="button" onclick="uncheckAll()" value="反选" class="button"/>
+                    &nbsp; &nbsp; &nbsp; &nbsp; 
+                    <input id="Submit" type="submit" name="submit" onclick = "return confirm('确认删除？')" value="删除"class="button"/>
+                <br />
+                <table width="100%" border="0" cellpadding="4" cellspacing="1" bgcolor="#464646" class="newfont03">
+
+				    <tr>
+                    <td height="20" colspan="14" align="center" bgcolor="#EEEEEE"class="tablestyle_title"> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;客户详细列表 &nbsp;</td>
+                    </tr>
+                    <tr>
+                     <td   class="td1">选择</td>
+				   <td   class="td1">@Html.DisplayNameFor(model => model.customerID)</td>
+					<td   class="td1">@Html.DisplayNameFor(model => model.loginName)</td>
+                    <td   class="td1">@Html.DisplayNameFor(model => model.customerName)</td>
+                     <td   class="td1"> 性别</td>
+                     <td   class="td1"> @Html.DisplayNameFor(model => model.customerType)</td>
+                      <td   class="td1"> @Html.DisplayNameFor(model => model.schoolID)</td>
+                    <td   class="td1"> @Html.DisplayNameFor(model => model.registerTime)</td>
+                    
+                      <td   class="td1"> @Html.DisplayNameFor(model => model.email)</td>
+                       <td   class="td1"> @Html.DisplayNameFor(model => model.tel)</td>
+                     <td   class="td1"> @Html.DisplayNameFor(model => model.address)</td>
+                      <td   class="td1"> @Html.DisplayNameFor(model => model.locked)</td>
+                    <td   class="td1"> @Html.DisplayNameFor(model => model.remarks)</td>
+                    <td  class="td1">操作</td>
+                  </tr>
+                  @foreach (OldGoodsManage.Models.t_Customer item in ViewBag.DataList as List<OldGoodsManage.Models.t_Customer>)
+                  {
+                    <tr  bgcolor="#FFFFFF">
+                     <td><input type="checkbox" id="chkId" name="chkId" value="@Html.Encode(item.customerID)" /></td>
+                      <td>
+                      @Html.DisplayFor(modelItem => item.customerID)
+                      </td>
+                      <td>
+                      @Html.DisplayFor(modelItem => item.loginName)
+                      </td>
+                      <td>
+                      @Html.DisplayFor(modelItem => item.customerName)
+                      </td>
+                      @if (item.sex == null) 
+                      {
+                          <td></td>
+                      }
+                      @if (item.sex == 0) 
+                      {
+                          <td>女</td>
+                      }
+                      @if (item.sex == 1) 
+                      {
+                          <td>男</td>
+                      }
+                      
+
+                      @if (item.customerType == 0) 
+                      {
+                          <td>金牌</td>
+                      }
+                      @if (item.customerType == 1) 
+                      {
+                          <td>银牌</td>
+                      }
+                         @if (item.customerType == 2) 
+                      {
+                          <td>铜牌</td>
+                      }
+                      
+                       <td>
+                      @Html.DisplayFor(modelItem => item.schoolID)
+                      </td>
+                      <td>
+                      @Html.DisplayFor(modelItem => item.registerTime)
+                      </td>
+                      
+                         <td>
+                      @Html.DisplayFor(modelItem => item.email)
+                      </td>
+                       <td>
+                      @Html.DisplayFor(modelItem => item.tel)
+                      </td>
+                       <td>
+                      @Html.DisplayFor(modelItem => item.address)
+                      </td>
+                      @if (item.locked == 0) 
+                      {
+                          <td>否</td>
+                      }
+                          @if (item.locked == 1) 
+                      {
+                          <td>是</td>
+                      }
+                       <td>
+                      @Html.DisplayFor(modelItem => item.remarks)
+                      </td>
+                       <td>
+                         @Html.ActionLink("详细信息", "CustomerDetails", new { id = item.customerID }) |
+                        <a id="alink" onclick = "return confirm('确认删除？');" href="@String.Format("{0}", @Url.Action("DeleteCustomer", "Customer", new { id = item.customerID }))">删除该用户</a>|
+                           @Html.ActionLink("锁定与解锁", "Locked", new { id = item.customerID }) 
+                       </td>
+                      
+                  </tr>
+                  }
+                </table>
+                </td>
+  </tr>    
+
+ 
+        
+ 
+</table>
+
+</body>
+</html>
+  }

@@ -1,0 +1,142 @@
+@using OldGoodsManage.Models
+@using PagedList
+@using PagedList.Mvc
+@model IEnumerable<OldGoodsManage.Models.t_Goods>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_BgLayout.cshtml";
+    var pagedGoods = Model as IPagedList<t_Goods>;
+}
+
+@section Styles
+{
+    @Styles.Render("~/Style/PagedList.css")
+}
+<style>
+.pagination > .active > a,
+.pagination > .active > span,
+.pagination > .active > a:hover,
+.pagination > .active > span:hover,
+.pagination > .active > a:focus,
+.pagination > .active > span:focus {
+  z-index: 2;
+  color: #ffffff;
+  cursor: default;
+  background-color: #6495ED;
+  border-color: #6495ED;
+}
+
+#page {
+    position: relative;
+    left: 800px;
+}
+</style>
+<script type="text/javascript" language="javascript" >
+    //全选
+    function checkAll() {
+        var ids = document.getElementsByName('chkId');
+        for (i = 0; i < ids.length; i++)
+            ids[i].checked = true;
+    }
+    //反选
+    function uncheckAll() {
+        var ids = document.getElementsByName('chkId');
+        for (i = 0; i < ids.length; i++) {
+            ids[i].checked = false;
+        }
+    }
+</script>
+
+ @using (Html.BeginForm())
+ {
+  <table >
+ <tr>
+ <td style="FONT-WEIGHT:bold; COLOR:#fff;" colspan="8" height="30" bgcolor="#6495ED" align="center">商品状态详细列表 &nbsp;&nbsp;</td>
+ </tr>
+
+  <tr>
+     
+      <td width="200" height="52" background="../../Images/nav04.gif">
+      <input id="button1" type="button" onclick="checkAll()" value="全选" class="button" />
+      <input id="button2" type="button" onclick="uncheckAll()" value="反选" class="button" />
+      </td>
+      <td width="1000"  height="52" background="../../Images/nav04.gif">
+      <input type="submit" id="Submit2" value="删除" name="submit" /> 
+      </td>
+    @* </td>*@
+     </tr>
+   </table>
+     <table border="1" cellspacing="0" cellpadding="0" width="100%">
+         <tr>
+             <td height="40" bgcolor="#d1e6f7" class="td1"></td>
+             <td bgcolor="#d1e6f7" class="td1">商品标题</td>
+             <td bgcolor="#d1e6f7" class="td1">商品详情</td>
+             <td bgcolor="#d1e6f7" class="td1">商品状态</td>
+         </tr>
+
+         @foreach (var item in Model)
+         {
+             <tr>
+                 <td>
+                     <input type="checkbox" id="chkId" name="chkId" value="@Html.Encode(item.goodsID)"/>
+                 </td>
+
+                 <td>
+                     @Html.DisplayFor(modelItem => item.goodsTitle)
+                 </td>
+
+                 <td>
+                     @Html.DisplayFor(modelItem => item.goodsInfo)
+                 </td>
+
+                 <td>
+                     @if (item.goodsStatus == 0)
+                     {
+                         @:待审核
+                     }
+                     @if (item.goodsStatus == 1)
+                     {
+                         @:审核未通过
+                     }
+                     @if (item.goodsStatus == 2)
+                     {
+                         @:已发布
+                     }
+                     @if (item.goodsStatus == 3)
+                     {
+                         @:已下架
+                     }
+                     @if (item.goodsStatus == 4)
+                     {
+                         @:已冻结
+                     }
+                 </td>
+
+             </tr>
+
+         }
+     </table>
+     <br/>
+if (ViewBag.temp == -1 || ViewBag.temp == 0)
+{
+    <pre>
+        <input type="submit" id="Submit3" value="审核通过" name="submit"/>  <input type="submit" id="Submit4" value="冻结商品" name="submit" />  <input type="submit" id="Submit5" value="下架商品" name="submit" />   
+    </pre>  
+}
+if (ViewBag.temp == 4)
+{
+    <pre>
+    <input type="submit" id="Submit4" value="冻结商品" name="submit" />  <input type="submit" id="Submit5" value="下架商品" name="submit" />
+    </pre>
+}
+
+ }
+
+
+<div id="page">
+    <span>
+         @Html.PagedListPager(pagedGoods, page => Url.Action("Index", "GoodsStatus", new {page = page}))
+    </span>
+</div>
+

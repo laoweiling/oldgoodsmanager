@@ -1,0 +1,17 @@
+﻿@model OldGoodsManage.Models.t_Customer
+
+@{
+    ViewBag.Title = "消息中心";
+    Layout = "~/Views/Shared/personalCenter.cshtml";
+}
+@section Styles{
+  @Styles.Render("~/style/messageCenter.css")
+}
+<div style="width:100%;height:30px;background-color:#8e0000">
+<table style="width:100%;height:100%;text-align:center;color:White;font-size:1.17em;">
+<tr>
+<td class="funcTd">@Html.ActionLink("系统消息", "SystemMessage", "Customer")</td>
+<td class="funcTd">@Html.ActionLink("商品评论", "CustomerMessage", "Customer")</td>
+</tr>
+</table>
+</div>

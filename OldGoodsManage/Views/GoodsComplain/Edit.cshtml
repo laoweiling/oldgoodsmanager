@@ -1,0 +1,61 @@
+﻿@model OldGoodsManage.Models.t_GoodsComplain
+
+@{
+    ViewBag.Title = "Edit";
+}
+
+<h2>Edit</h2>
+
+@using (Html.BeginForm()) {
+    @Html.ValidationSummary(true)
+
+    <fieldset>
+        <legend>t_GoodsComplain</legend>
+
+        @Html.HiddenFor(model => model.GoodsComplainID)
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.goodsID)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.goodsID)
+            @Html.ValidationMessageFor(model => model.goodsID)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.reporterID)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.reporterID)
+            @Html.ValidationMessageFor(model => model.reporterID)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.reason)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.reason)
+            @Html.ValidationMessageFor(model => model.reason)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.complainTime)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.complainTime)
+            @Html.ValidationMessageFor(model => model.complainTime)
+        </div>
+
+        <p>
+            <input type="submit" value="Save" />
+        </p>
+    </fieldset>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

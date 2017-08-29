@@ -1,0 +1,185 @@
+@model OldGoodsManage.Models.t_Feedback
+
+@{
+    ViewBag.Title = "用户反馈";
+    Layout = "~/Views/Shared/_FgLayout.cshtml";
+}
+
+
+@using (Html.BeginForm()) {
+    @Html.ValidationSummary(true)
+
+     <html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312" />
+<title>用户反馈</title>
+<link href="/style/toppage.css" rel="stylesheet" type="text/css" />
+<link rel="stylesheet" href="/style/base.css" />
+<link rel="stylesheet" type="text/css" href="/style/fabu.css" />
+<script>
+    //验证手机号码   
+    function fucCheckTel() {
+        //    var redflag = 0; 
+        var tel = $('#Tel').val();
+        if (tel != "") {
+            if (tel.search(/((\d{11})|^(\(\d{2,3}\))|(\d{3}\-))?1[3,8,5]{1}\d{9}$/) != -1) {
+                //            redflag=0;  
+                return true;
+            }
+            else {
+                alert("手机格式错误");
+                //           redflag=1;  
+                return false;
+            }
+        }
+
+    }
+    //验证QQ  
+    function isQQ() {
+        var qq = $('#QQ').val();
+        if (qq != "") {
+            if (qq.search(/^\+?[1-9][0-9]*$/) != -1) {
+                //          redflag = 0;
+                return true;
+            }
+            else {
+                alert("qq格式错误");
+                //          redflag = 1;
+                return false;
+            }
+        }
+
+    } 
+</script>
+</head>
+<body >
+<div>
+
+<form action="../Feedback/addFeedback" method="post">
+ <fieldset>
+ <div id="div1">
+<table id="table0">
+  <tr>
+    <td width="1090"  align="left" valign="top">
+    <table id="table2" style=" background-color:#E3EEEC">
+      <tr>
+        <td width="106" height="1070">&nbsp;</td>
+        <td width="951" valign="top">
+		<table id="table1" >
+            <tr>
+              <td width="1010" height="167" valign="top"><table id="table3">
+                  <tr>
+                    <td width="898" height="153" align="center"><blockquote>
+                      <p align="center"><img src="/Images/Fabu.png" width="37" height="37" /></p>
+                        <p align="center">------------------------------------</p>
+                        <p align="center"><span class="STYLE3 STYLE5" style=" color:#A52A2A;font-size: 30px; font-family: "新宋体";">个人反馈</span></p>
+                    </blockquote>
+                    </td>
+                    </tr>
+              </table></td>
+            </tr>
+
+            <tr >
+              <td height="787" valign="top" >
+
+              <table id="table4" style="  background-color:#FFFAFA"> 
+                <tr>
+                  <td height="644" align="center" valign="top"><table id="table5">
+                     <tr>
+                      <td height="66" align="left"><p><strong style=" color:#A52A2A;">@Html.LabelFor(model => model.feedback)</strong> 
+                     
+                      </p>
+					   <u></u>
+					   <hr/></td>
+                    </tr>
+                   
+                    <tr>
+                      <td width="900" height="30" align="center">
+                       <br />
+                      <div align="left" style="margin-left:90px">
+                         @Html.TextAreaFor(model => model.feedback, new {@style="width:600px;height:120px" })
+                         
+                        </div>
+                      
+                      </td>
+                    </tr>
+                    <tr>
+                      <td width="768" height="30" align="center">
+                      <div align="left" style="margin-left:90px; color:Red">
+                         @Html.ValidationMessageFor(model => model.feedback)
+                        </div>
+                        <br />
+                      </td>
+                    </tr>
+                    <tr>
+                      <td height="66" align="left"><p><strong style=" color:#A52A2A">联系方式（至少填写一种）</strong></p>
+					   <u></u>
+					   <hr></td>
+                    </tr>
+                    
+                     <tr>
+                      <td width="768" height="30" align="center">
+                       <br />
+                      <div align="left" style="margin-left:90px; color:Red">
+                        @Html.ValidationMessageFor(model=>model.contactWay)
+                        </div>
+                      </td>
+                    </tr>
+
+                    <tr>
+                      <td width="768" height="30" align="center">
+                       <br />
+                      <div align="left" style="margin-left:90px"><strong>Tel</strong>
+                          <input id="Tel" type="text" name="Tel"    onblur="fucCheckTel()" />
+                        
+                        </div>
+                      </td>
+                    </tr>
+
+                      <tr>
+                      <td width="768" height="30" align="center">
+                       <br />
+                      <div align="left" style="margin-left:90px"><strong>QQ</strong>
+                          <input id="QQ" type="text" name="QQ" onblur="isQQ()" />
+                       
+                        </div>
+                      </td>
+                    </tr>
+                    
+                    <tr>
+                      <td height="29">&nbsp;</td>
+                    </tr>
+                    <tr>
+                      <td height="50" align="left"><div align="left" style="margin-left:150px">
+                      <br />
+                      <br />
+                               <input type="submit" name="submit" value="提交反馈" /> 
+                              
+                       </div>        
+                       </td>
+                    </tr>
+                  </table>
+                    </td>
+                </tr>
+              </table>
+               
+              </td>
+            </tr>
+          </table>
+          
+          </td>
+       
+      </tr>
+    </table>
+    </td>
+ </tr>
+</table>
+</div>  
+ </fieldset> 
+</form>
+
+</div>
+</body>
+</html>
+}
+

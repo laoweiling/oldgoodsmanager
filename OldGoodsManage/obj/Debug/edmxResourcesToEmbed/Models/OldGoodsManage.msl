@@ -1,0 +1,194 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2008/09/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="OldGoodsManageModelStoreContainer" CdmEntityContainer="OldGoodsManageEntities">
+    <EntitySetMapping Name="t_Category">
+      <EntityTypeMapping TypeName="OldGoodsManageModel.t_Category">
+        <MappingFragment StoreEntitySet="t_Category">
+          <ScalarProperty Name="categoryID" ColumnName="categoryID" />
+          <ScalarProperty Name="categoryName" ColumnName="categoryName" />
+          <ScalarProperty Name="parentID" ColumnName="parentID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="t_Comment">
+      <EntityTypeMapping TypeName="OldGoodsManageModel.t_Comment">
+        <MappingFragment StoreEntitySet="t_Comment">
+          <ScalarProperty Name="commentID" ColumnName="commentID" />
+          <ScalarProperty Name="goodsID" ColumnName="goodsID" />
+          <ScalarProperty Name="comment" ColumnName="comment" />
+          <ScalarProperty Name="commentatorID" ColumnName="commentatorID" />
+          <ScalarProperty Name="commentTime" ColumnName="commentTime" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="t_Customer">
+      <EntityTypeMapping TypeName="OldGoodsManageModel.t_Customer">
+        <MappingFragment StoreEntitySet="t_Customer">
+          <ScalarProperty Name="customerID" ColumnName="customerID" />
+          <ScalarProperty Name="customerName" ColumnName="customerName" />
+          <ScalarProperty Name="customerType" ColumnName="customerType" />
+          <ScalarProperty Name="loginName" ColumnName="loginName" />
+          <ScalarProperty Name="registerTime" ColumnName="registerTime" />
+          <ScalarProperty Name="password" ColumnName="password" />
+          <ScalarProperty Name="email" ColumnName="email" />
+          <ScalarProperty Name="schoolID" ColumnName="schoolID" />
+          <ScalarProperty Name="sex" ColumnName="sex" />
+          <ScalarProperty Name="tel" ColumnName="tel" />
+          <ScalarProperty Name="locked" ColumnName="locked" />
+          <ScalarProperty Name="address" ColumnName="address" />
+          <ScalarProperty Name="remarks" ColumnName="remarks" />
+          <ScalarProperty Name="collectionID" ColumnName="collectionID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="t_Feedback">
+      <EntityTypeMapping TypeName="OldGoodsManageModel.t_Feedback">
+        <MappingFragment StoreEntitySet="t_Feedback">
+          <ScalarProperty Name="feedbackID" ColumnName="feedbackID" />
+          <ScalarProperty Name="feedback" ColumnName="feedback" />
+          <ScalarProperty Name="contactWay" ColumnName="contactWay" />
+          <ScalarProperty Name="feedbackTime" ColumnName="feedbackTime" />
+          <ScalarProperty Name="status" ColumnName="status" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="t_Function">
+      <EntityTypeMapping TypeName="OldGoodsManageModel.t_Function">
+        <MappingFragment StoreEntitySet="t_Function">
+          <ScalarProperty Name="functionID" ColumnName="functionID" />
+          <ScalarProperty Name="functionName" ColumnName="functionName" />
+          <ScalarProperty Name="remarks" ColumnName="remarks" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="t_Goods">
+      <EntityTypeMapping TypeName="OldGoodsManageModel.t_Goods">
+        <MappingFragment StoreEntitySet="t_Goods">
+          <ScalarProperty Name="goodsID" ColumnName="goodsID" />
+          <ScalarProperty Name="goodsTitle" ColumnName="goodsTitle" />
+          <ScalarProperty Name="goodsInfo" ColumnName="goodsInfo" />
+          <ScalarProperty Name="goodsPrice" ColumnName="goodsPrice" />
+          <ScalarProperty Name="customerID" ColumnName="customerID" />
+          <ScalarProperty Name="releaseTime" ColumnName="releaseTime" />
+          <ScalarProperty Name="validTime" ColumnName="validTime" />
+          <ScalarProperty Name="tradeAddress" ColumnName="tradeAddress" />
+          <ScalarProperty Name="goodsImage" ColumnName="goodsImage" />
+          <ScalarProperty Name="goodsStatus" ColumnName="goodsStatus" />
+          <ScalarProperty Name="categoryID" ColumnName="categoryID" />
+          <ScalarProperty Name="schoolID" ColumnName="schoolID" />
+          <ScalarProperty Name="remarks" ColumnName="remarks" />
+          <ScalarProperty Name="contactQQ" ColumnName="contactQQ" />
+          <ScalarProperty Name="contactTel" ColumnName="contactTel" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="t_goodsComplain">
+      <EntityTypeMapping TypeName="OldGoodsManageModel.t_goodsComplain">
+        <MappingFragment StoreEntitySet="t_goodsComplain">
+          <ScalarProperty Name="goodsComplainID" ColumnName="goodsComplainID" />
+          <ScalarProperty Name="goodsID" ColumnName="goodsID" />
+          <ScalarProperty Name="reporterID" ColumnName="reporterID" />
+          <ScalarProperty Name="reason" ColumnName="reason" />
+          <ScalarProperty Name="complainTime" ColumnName="complainTime" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="t_Message">
+      <EntityTypeMapping TypeName="OldGoodsManageModel.t_Message">
+        <MappingFragment StoreEntitySet="t_Message">
+          <ScalarProperty Name="messageID" ColumnName="messageID" />
+          <ScalarProperty Name="senderID" ColumnName="senderID" />
+          <ScalarProperty Name="receriverID" ColumnName="receriverID" />
+          <ScalarProperty Name="message" ColumnName="message" />
+          <ScalarProperty Name="messageTime" ColumnName="messageTime" />
+          <ScalarProperty Name="reply" ColumnName="reply" />
+          <ScalarProperty Name="type" ColumnName="type" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="t_Recruitment">
+      <EntityTypeMapping TypeName="OldGoodsManageModel.t_Recruitment">
+        <MappingFragment StoreEntitySet="t_Recruitment">
+          <ScalarProperty Name="recruitmentID" ColumnName="recruitmentID" />
+          <ScalarProperty Name="department" ColumnName="department" />
+          <ScalarProperty Name="requirment" ColumnName="requirment" />
+          <ScalarProperty Name="contactWay" ColumnName="contactWay" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="t_Reply">
+      <EntityTypeMapping TypeName="OldGoodsManageModel.t_Reply">
+        <MappingFragment StoreEntitySet="t_Reply">
+          <ScalarProperty Name="replyID" ColumnName="replyID" />
+          <ScalarProperty Name="commentID" ColumnName="commentID" />
+          <ScalarProperty Name="replyTime" ColumnName="replyTime" />
+          <ScalarProperty Name="replyerID" ColumnName="replyerID" />
+          <ScalarProperty Name="reply" ColumnName="reply" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="t_Role">
+      <EntityTypeMapping TypeName="OldGoodsManageModel.t_Role">
+        <MappingFragment StoreEntitySet="t_Role">
+          <ScalarProperty Name="roleID" ColumnName="roleID" />
+          <ScalarProperty Name="roleName" ColumnName="roleName" />
+          <ScalarProperty Name="remarks" ColumnName="remarks" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="t_Role_Function">
+      <EntityTypeMapping TypeName="OldGoodsManageModel.t_Role_Function">
+        <MappingFragment StoreEntitySet="t_Role_Function">
+          <ScalarProperty Name="role_FuncitonID" ColumnName="role_FuncitonID" />
+          <ScalarProperty Name="roleID" ColumnName="roleID" />
+          <ScalarProperty Name="functionID" ColumnName="functionID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="t_School">
+      <EntityTypeMapping TypeName="OldGoodsManageModel.t_School">
+        <MappingFragment StoreEntitySet="t_School">
+          <ScalarProperty Name="schoolID" ColumnName="schoolID" />
+          <ScalarProperty Name="schoolName" ColumnName="schoolName" />
+          <ScalarProperty Name="remarks" ColumnName="remarks" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="t_SiteInfo">
+      <EntityTypeMapping TypeName="OldGoodsManageModel.t_SiteInfo">
+        <MappingFragment StoreEntitySet="t_SiteInfo">
+          <ScalarProperty Name="siteInfoID" ColumnName="siteInfoID" />
+          <ScalarProperty Name="companyInfo" ColumnName="companyInfo" />
+          <ScalarProperty Name="companyTel" ColumnName="companyTel" />
+          <ScalarProperty Name="companyEmail" ColumnName="companyEmail" />
+          <ScalarProperty Name="companyAddress" ColumnName="companyAddress" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="t_User">
+      <EntityTypeMapping TypeName="OldGoodsManageModel.t_User">
+        <MappingFragment StoreEntitySet="t_User">
+          <ScalarProperty Name="userID" ColumnName="userID" />
+          <ScalarProperty Name="userName" ColumnName="userName" />
+          <ScalarProperty Name="loginName" ColumnName="loginName" />
+          <ScalarProperty Name="registerTime" ColumnName="registerTime" />
+          <ScalarProperty Name="password" ColumnName="password" />
+          <ScalarProperty Name="roleID" ColumnName="roleID" />
+          <ScalarProperty Name="email" ColumnName="email" />
+          <ScalarProperty Name="sex" ColumnName="sex" />
+          <ScalarProperty Name="tel" ColumnName="tel" />
+          <ScalarProperty Name="address" ColumnName="address" />
+          <ScalarProperty Name="remarks" ColumnName="remarks" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <AssociationSetMapping Name="t_Friends" TypeName="OldGoodsManageModel.t_Friends" StoreEntitySet="t_Friends">
+      <EndProperty Name="t_Customer">
+        <ScalarProperty Name="customerID" ColumnName="friendsId" />
+      </EndProperty>
+      <EndProperty Name="t_Customer1">
+        <ScalarProperty Name="customerID" ColumnName="hostId" />
+      </EndProperty>
+    </AssociationSetMapping>
+  </EntityContainerMapping>
+</Mapping>

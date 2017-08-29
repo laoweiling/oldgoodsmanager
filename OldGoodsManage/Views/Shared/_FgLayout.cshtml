@@ -1,0 +1,33 @@
+﻿
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312" />
+<title>二货网</title>
+<link href="~/style/toppage.css" rel="stylesheet" type="text/css" />
+<link rel="stylesheet" href="~/style/base.css" />
+ @RenderSection("scripts", required: false);
+ @RenderSection("Styles", required: false);
+@Scripts.Render("~/Scripts/global.js");
+@Scripts.Render("~/Scripts/head.js");
+</head>
+<body topmargin="0" leftmargin="0" rightmargin="0">
+
+@{Html.RenderAction("searchGoods", "Goods");}  
+@{Html.RenderAction("readCategory", "Category");}
+
+<div id="Rlayer">
+@RenderBody()
+</div>
+
+ <div id="bottom"  >   
+              @Html.ActionLink("联系我们", "Index", "SiteInfo" ) 
+              @Html.ActionLink("后台登录", "Login", "User" )
+              @Html.ActionLink("意见反馈", "AddFeedback", "Feedback" )
+              @Html.ActionLink("加入我们", "ReadGoods", "Goods") 
+         <br /><span>Copyright © 1996-2015 ERHUO Corporation, All Rights Reserved</span>
+         <br /><span style="position:relative;left:120px;">二货公司 版权所有</span>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,10 @@
+﻿ #logOut
+{
+    background-color:#E8E8E8;
+    border:none;
+    }
+#logOut::hover
+{
+    color:#E8E8E8;
+    border:#E8E8E8;
+}    

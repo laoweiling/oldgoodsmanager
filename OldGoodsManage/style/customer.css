@@ -1,0 +1,62 @@
+﻿.div1{
+	padding-left:30px;
+	background:url(../Images/1.png) 4px  no-repeat;
+	background-color:#FFFFFF;
+	width:205px;
+	height:28px;
+	line-height:25px;
+	border:1px solid #ccc;
+	}
+	.div2{
+	padding-left:30px;
+	background:url(../Images/2.png) 4px  no-repeat;
+	background-color:#FFFFFF;
+	width:205px;
+	height:28px;
+	line-height:25px;
+	border:1px solid #ccc;
+	}
+	.div3
+	{
+    background-color:#FFFFFF;
+  width:202px;
+	height:27px;
+	border:1px solid #ccc;
+	}
+  
+input{
+		border:0;
+	font-size:18px;	
+	}
+	#table0{
+ width="1124";
+ height="1169";
+  border="0"
+}
+#table1{
+ width="1016";
+ height="1058";
+ border="0"
+}
+#table2{
+width="1115" ;
+border="0"
+}
+#table3{
+width="904";
+ height="157";
+ border="0"
+}
+#table4{
+ width="906"; 
+height="757";
+ border="0"; 
+background-color:#FFFFFF
+}
+#table5{
+width="774";
+  height="645";
+ border="0" ;
+}
+.STYLE3 {font-size: 30px; font-family: "新宋体"; font-weight: bold;}
+.STYLE4 {color: #999999}

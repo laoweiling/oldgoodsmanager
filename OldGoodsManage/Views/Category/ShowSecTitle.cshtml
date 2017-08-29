@@ -1,0 +1,102 @@
+﻿@model IEnumerable<OldGoodsManage.Models.t_Category>
+
+@{
+    Layout = "~/Views/Shared/_BgLayout.cshtml";
+    ViewBag.Title = "ShowSecTitle";
+    string divEdit = "divE";
+    string divHidden = "divH";
+    string parentName = Session["ParentName"].ToString();
+}
+
+<script language="javascript" type="text/javascript">
+    function submit() {
+        var categoryName = document.getElementById("input").value;
+        if (categoryName == "")
+            alert("请输入合法值");
+        else {
+            var url = "/Category/CreateSecTitle/" + @Session["ParentID"] + "?name=" + categoryName;
+            window.location.href = url;
+
+        }
+    }
+    function onclickEdit(changeDiv) {
+        document.getElementById('divH'+changeDiv).style.display = 'block';
+        text = document.getElementById(changeDiv);
+        text.innerHTML = "<input type='text' id=-" + changeDiv + " value=" + text.innerHTML + " style= width:105; height:30; font-size:30px; fontWeight:bold/>";
+        document.getElementById('divE'+changeDiv).style.display = 'none';
+    }
+    function onclickSave(changeDiv,pName) {
+
+         var text1 = document.getElementById('-'+changeDiv);
+         var val = text1.value;
+        var text2 = document.getElementById(changeDiv);
+        text2.innerHTML = val;
+        
+        document.getElementById('divH'+changeDiv).style.display = 'none';
+        document.getElementById('divE' + changeDiv).style.display = 'block';
+        var url = "/Category/EditSecTitle/" + changeDiv + "?name=" + val+"&parentID="+@Session["ParentID"]+"&parentName=" + pName;
+        window.location.href = url;
+    }
+    function cancel(pName) {
+        var url = "/Category/ShowSecTitle/" + "@Session["ParentID"]" + "?name=" + pName;
+        alert(url);
+        window.location.href = url;
+    }
+
+</script>
+<p></p>
+ <p style="padding:5px 200px 2px"><font size="4"><strong>一级目录：@parentName</strong></font></p>
+<table style="float:right;margin-top:10px;margin-right:350px;"  width="600" border="2" cellspacing="0" cellpadding="1" >
+    <tr>
+        <th height="30" width="300" bgcolor="#d1e6f7" align="center" valign="middle"><font size="4">二级目录</font>
+        </th>
+        <th height="30" width="300" bgcolor="#d1e6f7" align="center" valign="middle"><font size="4">操作</font>
+        </th> 
+    </tr>
+
+@{
+     
+    foreach (var secTitle in Model)
+    {
+         
+            <tr>
+                 <td  height = "25" valign="middle" width="300">
+                    <center><strong><font size="3">
+                        <div id=@secTitle.categoryID.ToString()>@Html.DisplayFor(modelItem => secTitle.categoryName)</div>
+                        </font></strong>
+                 </td>
+                 <td>
+                    <center>
+                           <div id=@divEdit@secTitle.categoryID.ToString()><font size="3">
+                           <a href = "#" id="onclickEdit" onclick="onclickEdit(@secTitle.categoryID.ToString())">编辑</a>|
+                           @Html.ActionLink("删除", "DeleteSecTitle", new { id = secTitle.categoryID }, new { onclick = "javascript:return confirm('确定删除该目录吗?');" })
+                           </font></div>
+                           <div id=@divHidden@secTitle.categoryID.ToString() style="display:none;">
+                           <a href="#" id="onclickSave" onclick="onclickSave(@secTitle.categoryID.ToString(),'@parentName')"><font size="3">保存</font></a>&nbsp;<a href="#" id="cancel" onclick="cancel('@parentName')"><font size="3">取消</font></a>
+                           </div>            
+                     </center>           
+                  </td>
+                    
+              </tr>      
+    }
+} 
+</table>
+    <table style="float:right;margin-top:10px;margin-right:390px;"  width="560" border="0" cellspacing="0" cellpadding="1" >
+                <tr>
+                    <td height = "20" valign="middle" width = "300">
+                         <center><font size="3"><strong>
+                         新建二级目录:</strong>
+                         </font></center>
+                    </td>
+                    <td>
+                            <font size="3"><center>
+                            <input type="text"  name="input" id="input" style = "height:22;" /> 
+                            <input type="submit" name="sumbit" id="submit" onclick = "submit();" style="width:45; height:24; font-size:15px;"/>
+                               </center> 
+                         </font> 
+                    </td>
+                    <td>
+                        @Html.ActionLink("返回", "ShowFirTitle")
+                    </td>
+                </tr>
+        </table>

@@ -1,0 +1,88 @@
+﻿@model OldGoodsManage.Models.t_Role
+
+@{
+    ViewBag.Title = "editRole";
+    Layout = "~/Views/Shared/_BgLayout.cshtml";
+}
+@section Styles
+{
+    @Styles.Render("~style/user.css")
+}
+<div class="MainDiv">
+
+<table  border="0" cellpadding="0" cellspacing="0" class="CContent" >
+  @using (Html.BeginForm())
+  {
+  <tr >
+      <th class="tablestyle_title" >角色详情页面</th>
+  </tr>
+  <tr >
+    <td class="CPanel" >
+		
+		<table border="0" cellpadding="0" cellspacing="0" style="width:100%" >
+		<tr>
+			<td align="left" >
+               
+				<input type="button" name="Submit2" value="返回" class="button" onclick="location.href='@Url.Action("RoleList", "Role")'"/>			</td>
+		</tr>
+       
+            @Html.AntiForgeryToken()
+            @Html.ValidationSummary(true)
+            @Html.HiddenFor(model=>model.roleID)
+		<tr align="center">
+			<td class="TablePanel">
+            </td>
+		</tr>
+		<tr>
+			<td width="100%">
+				<fieldset style="height:450px;">
+				<legend>角色详情</legend>
+					  <table border="0" cellpadding="2" cellspacing="1" style="width:100%">
+					 <tr></tr> <tr></tr>
+					  <tr>
+					    <td nowrap="nowrap" align="right" width="15%">@Html.DisplayNameFor(model=>model.roleName):</td>
+					    <td width="35%"> @Html.DisplayFor(model => model.roleName)
+				       </td>
+					  </tr> 
+                      <tr>
+					    <td nowrap="nowrap" align="right" width="15%">@Html.DisplayNameFor(model=>model.remarks):</td>
+					    <td width="35%"> @Html.DisplayFor(model => model.remarks)
+				        </td>
+					  </tr> 
+                         <tr>
+                      <td colspan=2>
+                      拥有权限----------------------------------------------------------------------------------------------------
+                      </td>
+                      </tr>
+                       @foreach (var item in @ViewBag.functionList as List<OldGoodsManage.Models.t_Function>)
+                       {
+                        
+                                 <tr>
+                              <td nowrap="nowrap" align="left">
+                                 @item.functionName
+                               </td>
+                                  </tr>
+                       }
+					  </table>
+			    <br />
+				</fieldset>			
+			</td>
+		</tr>
+        <tr >
+			<td colspan="2" align="center" height="50px">
+                <input id="Submit2" type="submit" value="修改" name="submit" class="button"/>
+		</tr>
+   	</table>
+	
+	
+	 </td>
+  </tr>
+  
+  
+  }	
+		
+		
+
+</table>
+
+</div>

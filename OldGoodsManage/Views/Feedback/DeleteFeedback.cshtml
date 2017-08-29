@@ -1,0 +1,84 @@
+﻿@model OldGoodsManage.Models.t_Feedback
+
+@{
+    ViewBag.Title = "删除反馈";
+    Layout = "../Shared/_BgLayout.cshtml";
+}
+
+@using (Html.BeginForm())
+  {
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>反馈信息</title>
+<link href="../../style/user.css"   type="text/css"  rel="Stylesheet" />
+</head>
+<body  >
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+
+  <tr >  
+          <td height="62" background="../../Images/nav04.gif">
+		   <table width="98%" border="0" align="center" cellpadding="0" cellspacing="0">
+		    <tr>
+			  <td width="24"><input type="button" name="Submit2" value="返回" class="right-button02" onclick="window.history.go(-1);"/>	</td>
+			  <td width="420">
+                 
+              </td>
+             
+		     </tr>  
+           </table>
+          </td>
+  </tr>
+  <tr>
+    <td><table id="subtree1" style="DISPLAY: " width="100%" border="0" cellspacing="0" cellpadding="0">
+
+        <tr>
+          <td><table width="95%" border="0" align="center" cellpadding="0" cellspacing="0">
+	         
+              <tr>
+                <td height="40" class="font42"><table width="100%" border="0" cellpadding="4" cellspacing="1" bgcolor="#464646" class="newfont03">
+
+					<tr align="center" >
+                    <td height="20" colspan="9" bgcolor="#EEEEEE"class="tablestyle_title"> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+					 反馈信息列表 </td>
+                    </tr>
+                    <tr>
+				    <td height="20" align="right" bgcolor="#FFFFFF">@Html.DisplayNameFor(model => model.feedbackID):</td>
+                    <td bgcolor="#FFFFFF">@Html.DisplayFor(model => model.feedbackID)</td>
+                    </tr>
+                  <tr>
+				    <td width="15%" height="20" align="right" bgcolor="#FFFFFF">@Html.DisplayNameFor(model => model.contactWay):</td>
+                    <td width="85%" align="left" bgcolor="#FFFFFF">@Html.DisplayFor(model => model.contactWay)</td>
+                    </tr>
+                    <tr>
+				    <td width="15%" height="20" align="right" bgcolor="#FFFFFF">@Html.DisplayNameFor(model => model.feedbackTime):</td>
+                    <td width="85%" align="left" bgcolor="#FFFFFF">@Html.DisplayFor(model => model.feedbackTime)</td>
+                    </tr>
+                    <tr>
+				    <td width="15%" height="20" align="right" bgcolor="#FFFFFF">是否已读:</td>
+                    <td width="85%" align="left" bgcolor="#FFFFFF">@ViewBag.status</td>
+                    </tr>
+				<tr style=" height:100px">
+				    <td align="right" bgcolor="#FFFFFF">@Html.DisplayNameFor(model => model.feedback):</td>
+                    <td bgcolor="#FFFFFF">@Html.DisplayFor(model => model.feedback)</td>
+                    </tr>
+                      <tr bgcolor="#FFFFFF">
+                      <td></td> 
+                      <td align="right"> <input id="btn_del" type="submit" name="submit" onclick="Del()" class="button" value="删除该信息" />
+                      <input type="button" name="Submit3" value="返回" class="button" onclick="window.history.go(-1);"/>
+                      </td>
+                      </tr>
+                </table></td>
+              </tr>
+            </table></td>
+        </tr>
+      
+      </table>
+
+  </td>
+  </tr>
+  
+</table>
+</body>
+</html>
+  }

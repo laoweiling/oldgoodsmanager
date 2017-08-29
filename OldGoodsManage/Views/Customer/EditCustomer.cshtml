@@ -1,0 +1,154 @@
+@model OldGoodsManage.Models.t_Customer
+@{
+    ViewBag.Title = "修改个人信息";
+    Layout = "~/Views/Shared/personalCenter.cshtml";
+}
+
+@using (Html.BeginForm())
+{
+     @Html.ValidationSummary(true)
+     @Html.HiddenFor(model => model.customerID)
+     @Html.HiddenFor(model => model.customerType)
+     @Html.HiddenFor(model => model.email)
+     @Html.HiddenFor(model => model.schoolID)
+     @Html.HiddenFor(model => model.password)
+     @Html.HiddenFor(model => model.locked)
+     @Html.HiddenFor(model => model.registerTime)
+     @Html.HiddenFor(model => model.loginName)
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312" />
+<title>用户信息</title>
+
+<link rel="stylesheet" type="text/css" href="/style/fabu.css" />
+</head>
+<body >
+<div>
+
+<form action="../Customer/editCustomer" method="post">
+ <fieldset>
+ <div id="div1">
+<table style=" background-color:#E3EEEC">
+  <tr>
+   <td height="900"  valign="top" >
+              <table  style="background-color:#FFFAFA">                
+                  
+                    <tr>
+                      <td height="66" align="left"><p><strong style=" color:#A52A2A;">基本资料</strong> 
+                     
+                      </p>
+					   <u></u>
+					   <hr/></td>
+                    </tr>
+
+                    <tr>
+                      <td width="920" height="30" align="center">
+                      <div align="left" style="margin-left:90px"><strong>&nbsp;&nbsp;&nbsp @Html.LabelFor(model => model.loginName): &nbsp;&nbsp </strong>
+                      @Html.DisplayFor(model => model.loginName)
+                      </div>
+                   
+                           </td>
+                    </tr>
+                    <tr>
+                      <td height="30" align="center">
+                      <div align="left" style="margin-left:90px"><strong> @Html.LabelFor(model => model.customerName)：&nbsp;&nbsp</strong>
+                         @Html.EditorFor(model => model.customerName)
+                         @Html.ValidationMessageFor(model => model.customerName)
+                        </div>
+                        </td>
+                    </tr>
+                    <tr>
+                      <td height="30" align="left">
+                        <div align="left" style="margin-left:90px">
+                         
+                             <strong>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;性别：&nbsp;&nbsp 
+                                 <select id="Select1" name="sex">
+                                 <option>女</option>
+                                  <option>男</option>
+                                 </select></strong>      
+                      </div>   
+                      </td>
+                    </tr>
+                     
+                    <tr>
+                      <td height="30" align="left">
+                      <div align="left" style="margin-left:90px">
+
+                      <strong>
+                      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;学校：&nbsp;&nbsp 
+
+                       </strong> 
+                          @ViewBag.schoolID
+                      </div>
+                     </td>
+                    </tr>
+
+
+                    <tr>
+                      <td height="66" align="left"><p><strong style=" color:#A52A2A">联系方式</strong></p>
+					   <u></u>
+					   <hr></td>
+                    </tr>
+                    <tr>
+                      <td height="49" align="left"><div align="left" style="margin-left:120px"><strong> @Html.LabelFor(model => model.email)：</strong>
+                     @Html.DisplayFor(model => model.email)
+                      </div>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td height="43" align="left"><div align="left" style="margin-left:90px"><strong>@Html.LabelFor(model => model.tel)：&nbsp; </strong>
+                      @Html.EditorFor(model => model.tel)
+                        @Html.ValidationMessageFor(model => model.tel)
+                        </div>
+                      </td>
+                    </tr>
+                     <tr>
+                      <td height="43" align="left"><div align="left" style="margin-left:120px"><strong>@Html.LabelFor(model => model.address)：</strong>
+                      @Html.EditorFor(model => model.address)
+                        @Html.ValidationMessageFor(model => model.address)
+                        </div>
+                      </td>
+                    </tr>
+                     <tr>
+                      <td height="43" align="left"><div align="left" style="margin-left:120px"><strong>@Html.LabelFor(model => model.remarks)：</strong>
+                      @Html.EditorFor(model => model.remarks)
+                      
+                        </div>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td height="29">&nbsp;<br />
+                       <br />  <br />
+                       <br />  </td>
+                    </tr>
+                    <tr>
+                      <td height="50" align="left"><div align="left" style="margin-left:150px">
+                               <input type="submit" name="submit" value="保存"/>  &nbsp;          &nbsp;      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                <input  type="submit" name="submit" value="我要修改密码"/>
+                       </div> 
+                       <br />
+                       <br />
+                       <br />   
+                       <br />
+                       <br />  
+                       <br />
+                       <br />  <br />
+                       <br />      
+                       </td>
+                    </tr>
+                 
+                  
+              </table>
+               
+     </td>
+ </tr>
+</table>
+         
+</div>  
+ </fieldset> 
+</form>
+
+</div>
+</body>
+</html>
+}

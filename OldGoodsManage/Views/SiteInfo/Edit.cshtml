@@ -1,0 +1,80 @@
+﻿@model OldGoodsManage.Models.t_SiteInfo
+
+@{
+    ViewBag.Title = "Edit";
+    Layout = "~/Views/Shared/_BgLayout.cshtml";
+}
+
+@*<table style="border: solid thin blue" width="1080"  border="0"  bgcolor="#B0E0E6" cellpadding="2" cellspacing="2" align="center" >
+<tr>
+<td>*@
+
+@*<div align="center" style="margin-left:80px"><font color="#000000">修改站点信息</font></div>*@
+<br />
+<br />
+
+
+@using (Html.BeginForm())
+{
+    @Html.ValidationSummary(true)
+
+        @Html.HiddenFor(model => model.siteInfoID)
+    
+<table style="border: solid thin  blue"  width="950"  border="2"  bgcolor="#6495ED" cellpadding="5" cellspacing="5" align="center" >
+ <tr>
+ <td>
+
+ <br />
+        <div class="editor-field">
+        <div align="left" style="margin-left:90px"><strong>公司电话： </strong>
+        @Html.TextBoxFor(model => model.companyTel, new { @class = "main", @style = "width:600px;height:40px;" })
+        @Html.ValidationMessageFor(model => model.companyTel)</div>
+           
+        </div>
+         <br />
+         <br />
+      
+        <div class="editor-field">
+        <div align="left" style="margin-left:80px"><strong>公司Email： </strong>
+         @Html.TextBoxFor(model => model.companyEmail, new { @class = "main", @style = "width:600px;height:40px;" })
+         @Html.ValidationMessageFor(model => model.companyEmail)
+            </div>
+        </div>
+         <br />
+         <br />
+   
+        <div class="editor-field">
+        <div align="left" style="margin-left:90px"><strong>公司地址： </strong>
+          @Html.TextBoxFor(model => model.companyAddress, new { @class = "main", @style = "width:600px;height:40px;"})
+          @Html.ValidationMessageFor(model => model.companyAddress)
+            </div>
+        </div>
+        <br />
+        <br />
+         <div class="editor-field">
+         <div align="left" style="margin-left:90px"  ><strong> 公司简介：</strong>
+          @Html.TextAreaFor(model => model.companyInfo, new { @class = "main", @style = "width: 600px; height:70px;" })
+          @Html.ValidationMessageFor(model => model.companyInfo)
+              </div>
+            </div>
+         <br />
+          <br />
+         <div align="left" style="margin-left:350px"> <input type="submit" value="保存" />
+         </div>
+         
+</td>
+</tr>
+</table>
+    
+}        
+@*</td>
+</tr>
+</table>
+*@
+
+
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}
+

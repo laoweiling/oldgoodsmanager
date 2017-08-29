@@ -1,0 +1,97 @@
+
+.box {
+	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#6699FF', endColorstr='#6699FF');   
+	background-image:-webkit-linear-gradient(bottom, #6699FF 0%, #6699FF 100%);
+	/*控制下部分位置*/
+	margin: 0 auto;
+	position: fixed;
+	top: 0px;
+	left: 0px;
+}
+
+/*上面颜色的位置宽度*/
+.login-box {
+	width: 100%;
+	max-width:500px;
+	height: 100px;
+	position: relative;
+}
+
+/*自适应*/
+@media screen and (min-width:500px){
+	.login-box {
+		left: 0%; 
+	}
+}	
+
+/*控制表单位置*/
+.form {
+	width: 100%;
+	max-width:500px;
+	height: 205px;
+	margin: 25px auto 0px auto;
+	padding-top: 25px;
+}	
+/*下部分颜色*/
+.login-content {
+	height: 300px;
+	width: 100%;
+	max-width:500px;
+	background-color: rgba(255, 250, 2550, .6);
+	float: left;
+}		
+ 
+/*上下框间距*/ 
+.input-group {
+	margin: 0px 0px 30px 0px !important;
+}
+
+/*框的大小*/
+.form-control,
+.input-group {
+	height: 40px;
+}
+
+/*上部分颜色*/ 
+.login-title {
+	padding: 20px 10px;
+	background-color: rgba(0, 0, 0, .6);
+}
+
+/*发送消息颜色*/
+.login-title small {
+	color: #ffffff;
+}
+
+/*按钮大小*/
+.btn-sm {
+	padding: 10px 30px !important;
+	font-size: 16px !important;
+	position:relative;
+	top:18px;
+	left:65%;
+}
+
+.btn-info{
+    color:#fff;background-color:#5bc0de;border-color:#46b8da;
+    border-radius:5px;
+}
+
+select
+{
+    width:150px;
+    height:35px;
+    font-size:medium;
+    }
+
+textarea
+{
+     font-size:medium;
+     position:relative;
+     left:7px;top:4px;
+    } 
+
+span
+{
+     font-weight:bold;
+    }  

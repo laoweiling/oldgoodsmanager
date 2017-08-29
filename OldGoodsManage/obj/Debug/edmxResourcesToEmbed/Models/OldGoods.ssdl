@@ -1,0 +1,381 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="OldGoodsManageModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/02/edm/ssdl">
+  <EntityContainer Name="OldGoodsManageModelStoreContainer">
+    <EntitySet Name="t_Cart" EntityType="OldGoodsManageModel.Store.t_Cart" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="t_CartComment" EntityType="OldGoodsManageModel.Store.t_CartComment" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="t_Category" EntityType="OldGoodsManageModel.Store.t_Category" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="t_Comment" EntityType="OldGoodsManageModel.Store.t_Comment" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="t_Customer" EntityType="OldGoodsManageModel.Store.t_Customer" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="t_Feedback" EntityType="OldGoodsManageModel.Store.t_Feedback" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="t_Friends" EntityType="OldGoodsManageModel.Store.t_Friends" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="t_FriendsComment" EntityType="OldGoodsManageModel.Store.t_FriendsComment" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="t_Function" EntityType="OldGoodsManageModel.Store.t_Function" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="t_Goods" EntityType="OldGoodsManageModel.Store.t_Goods" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="t_GoodsComplain" EntityType="OldGoodsManageModel.Store.t_GoodsComplain" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="t_GoodsRecommend" EntityType="OldGoodsManageModel.Store.t_GoodsRecommend" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="t_Message" EntityType="OldGoodsManageModel.Store.t_Message" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="t_Order" EntityType="OldGoodsManageModel.Store.t_Order" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="t_Recruitment" EntityType="OldGoodsManageModel.Store.t_Recruitment" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="t_Reply" EntityType="OldGoodsManageModel.Store.t_Reply" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="t_Role" EntityType="OldGoodsManageModel.Store.t_Role" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="t_Role_Function" EntityType="OldGoodsManageModel.Store.t_Role_Function" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="t_SaleRecord" EntityType="OldGoodsManageModel.Store.t_SaleRecord" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="t_School" EntityType="OldGoodsManageModel.Store.t_School" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="t_ShardGoods" EntityType="OldGoodsManageModel.Store.t_ShardGoods" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="t_SiteInfo" EntityType="OldGoodsManageModel.Store.t_SiteInfo" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="t_User" EntityType="OldGoodsManageModel.Store.t_User" store:Type="Tables" Schema="dbo" />
+    <AssociationSet Name="FK__t_Cart__customer__3D5E1FD2" Association="OldGoodsManageModel.Store.FK__t_Cart__customer__3D5E1FD2">
+      <End Role="t_Customer" EntitySet="t_Customer" />
+      <End Role="t_Cart" EntitySet="t_Cart" />
+    </AssociationSet>
+    <AssociationSet Name="FK__t_Cart__goodsID__3E52440B" Association="OldGoodsManageModel.Store.FK__t_Cart__goodsID__3E52440B">
+      <End Role="t_Goods" EntitySet="t_Goods" />
+      <End Role="t_Cart" EntitySet="t_Cart" />
+    </AssociationSet>
+    <AssociationSet Name="FK__t_SaleRec__goods__571DF1D5" Association="OldGoodsManageModel.Store.FK__t_SaleRec__goods__571DF1D5">
+      <End Role="t_Goods" EntitySet="t_Goods" />
+      <End Role="t_SaleRecord" EntitySet="t_SaleRecord" />
+    </AssociationSet>
+    <AssociationSet Name="FK__t_SaleRec__order__5629CD9C" Association="OldGoodsManageModel.Store.FK__t_SaleRec__order__5629CD9C">
+      <End Role="t_Order" EntitySet="t_Order" />
+      <End Role="t_SaleRecord" EntitySet="t_SaleRecord" />
+    </AssociationSet>
+    <AssociationSet Name="FK__t_ShardGo__goods__5BE2A6F2" Association="OldGoodsManageModel.Store.FK__t_ShardGo__goods__5BE2A6F2">
+      <End Role="t_Goods" EntitySet="t_Goods" />
+      <End Role="t_ShardGoods" EntitySet="t_ShardGoods" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="t_Cart">
+    <Key>
+      <PropertyRef Name="customerID" />
+      <PropertyRef Name="goodsID" />
+    </Key>
+    <Property Name="customerID" Type="bigint" Nullable="false" />
+    <Property Name="goodsID" Type="bigint" Nullable="false" />
+    <Property Name="buyTime" Type="datetime" Nullable="false" />
+    <Property Name="size" Type="nvarchar" MaxLength="50" />
+    <Property Name="color" Type="nvarchar" MaxLength="50" />
+    <Property Name="amount" Type="int" Nullable="false" />
+    <Property Name="isValid" Type="bit" Nullable="false" />
+  </EntityType>
+  <EntityType Name="t_CartComment">
+    <Key>
+      <PropertyRef Name="cartCommentID" />
+    </Key>
+    <Property Name="cartCommentID" Type="bigint" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="commenter" Type="bigint" Nullable="false" />
+    <Property Name="customerID" Type="bigint" Nullable="false" />
+    <Property Name="goodsID" Type="bigint" Nullable="false" />
+    <Property Name="comment" Type="nvarchar(max)" />
+    <Property Name="isGood" Type="bit" Nullable="false" />
+    <Property Name="commentTime" Type="datetime" Nullable="false" />
+  </EntityType>
+  <EntityType Name="t_Category">
+    <Key>
+      <PropertyRef Name="categoryID" />
+    </Key>
+    <Property Name="categoryID" Type="bigint" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="categoryName" Type="nvarchar" Nullable="false" MaxLength="20" />
+    <Property Name="parentID" Type="bigint" Nullable="false" />
+  </EntityType>
+  <EntityType Name="t_Comment">
+    <Key>
+      <PropertyRef Name="commentID" />
+    </Key>
+    <Property Name="commentID" Type="bigint" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="goodsID" Type="bigint" Nullable="false" />
+    <Property Name="comment" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="commentatorID" Type="bigint" Nullable="false" />
+    <Property Name="commentTime" Type="datetime" Nullable="false" />
+    <Property Name="addComment" Type="nvarchar(max)" />
+    <Property Name="commentType" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="t_Customer">
+    <Key>
+      <PropertyRef Name="customerID" />
+    </Key>
+    <Property Name="customerID" Type="bigint" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="customerName" Type="nvarchar" Nullable="false" MaxLength="20" />
+    <Property Name="customerType" Type="int" Nullable="false" />
+    <Property Name="loginName" Type="nvarchar" Nullable="false" MaxLength="50" />
+    <Property Name="registerTime" Type="datetime" Nullable="false" />
+    <Property Name="password" Type="nvarchar" Nullable="false" MaxLength="50" />
+    <Property Name="email" Type="nvarchar" Nullable="false" MaxLength="50" />
+    <Property Name="schoolID" Type="bigint" Nullable="false" />
+    <Property Name="sex" Type="int" />
+    <Property Name="tel" Type="nvarchar" Nullable="false" MaxLength="30" />
+    <Property Name="locked" Type="int" Nullable="false" />
+    <Property Name="address" Type="nvarchar" Nullable="false" MaxLength="100" />
+    <Property Name="remarks" Type="nvarchar(max)" />
+    <Property Name="collectionID" Type="nvarchar(max)" />
+  </EntityType>
+  <EntityType Name="t_Feedback">
+    <Key>
+      <PropertyRef Name="feedbackID" />
+    </Key>
+    <Property Name="feedbackID" Type="bigint" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="feedback" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="contactWay" Type="nvarchar" Nullable="false" MaxLength="50" />
+    <Property Name="feedbackTime" Type="datetime" Nullable="false" />
+    <Property Name="status" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="t_Friends">
+    <Key>
+      <PropertyRef Name="customerID" />
+      <PropertyRef Name="friendsId" />
+    </Key>
+    <Property Name="customerID" Type="bigint" Nullable="false" />
+    <Property Name="friendsId" Type="bigint" Nullable="false" />
+    <Property Name="friendsName" Type="nvarchar" Nullable="false" MaxLength="50" />
+    <Property Name="isAllowShard" Type="bit" Nullable="false" />
+    <Property Name="isCartVisible" Type="bit" Nullable="false" />
+    <Property Name="isOrderVisible" Type="bit" Nullable="false" />
+  </EntityType>
+  <EntityType Name="t_FriendsComment">
+    <Key>
+      <PropertyRef Name="friendsCommentID" />
+    </Key>
+    <Property Name="friendsCommentID" Type="bigint" Nullable="false" />
+    <Property Name="customerID" Type="bigint" Nullable="false" />
+    <Property Name="goodsID" Type="bigint" Nullable="false" />
+    <Property Name="friendsID" Type="bigint" Nullable="false" />
+    <Property Name="comment" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="isGood" Type="bit" Nullable="false" />
+    <Property Name="commentTime" Type="datetime" Nullable="false" />
+  </EntityType>
+  <EntityType Name="t_Function">
+    <Key>
+      <PropertyRef Name="functionID" />
+    </Key>
+    <Property Name="functionID" Type="bigint" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="functionName" Type="nvarchar" Nullable="false" MaxLength="50" />
+    <Property Name="remarks" Type="nvarchar(max)" />
+  </EntityType>
+  <EntityType Name="t_Goods">
+    <Key>
+      <PropertyRef Name="goodsID" />
+    </Key>
+    <Property Name="goodsID" Type="bigint" Nullable="false" />
+    <Property Name="goodsTitle" Type="nvarchar" Nullable="false" MaxLength="100" />
+    <Property Name="goodsInfo" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="goodsPrice" Type="decimal" Nullable="false" />
+    <Property Name="customerID" Type="bigint" Nullable="false" />
+    <Property Name="releaseTime" Type="datetime" Nullable="false" />
+    <Property Name="validTime" Type="int" Nullable="false" />
+    <Property Name="tradeAddress" Type="nvarchar" Nullable="false" MaxLength="50" />
+    <Property Name="goodsImage" Type="nvarchar" Nullable="false" MaxLength="100" />
+    <Property Name="goodsStatus" Type="int" Nullable="false" />
+    <Property Name="categoryID" Type="bigint" Nullable="false" />
+    <Property Name="schoolID" Type="bigint" Nullable="false" />
+    <Property Name="remarks" Type="nvarchar(max)" />
+    <Property Name="contactQQ" Type="nvarchar" MaxLength="30" />
+    <Property Name="contactTel" Type="nvarchar" MaxLength="30" />
+    <Property Name="size" Type="nchar" MaxLength="200" />
+    <Property Name="color" Type="nchar" MaxLength="200" />
+    <Property Name="relateGoodsID" Type="nvarchar(max)" />
+    <Property Name="inventory" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="t_GoodsComplain">
+    <Key>
+      <PropertyRef Name="goodsComplainID" />
+    </Key>
+    <Property Name="goodsComplainID" Type="bigint" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="goodsID" Type="bigint" Nullable="false" />
+    <Property Name="reporterID" Type="bigint" Nullable="false" />
+    <Property Name="reason" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="complainTime" Type="datetime" Nullable="false" />
+  </EntityType>
+  <EntityType Name="t_GoodsRecommend">
+    <Key>
+      <PropertyRef Name="goodsID" />
+    </Key>
+    <Property Name="goodsID" Type="bigint" Nullable="false" />
+    <Property Name="goodCommentNum" Type="int" />
+    <Property Name="collectionNum" Type="int" />
+    <Property Name="addToCartNum" Type="int" />
+    <Property Name="buyNum" Type="int" />
+    <Property Name="goodInCartNum" Type="int" />
+    <Property Name="goodInOrderNum" Type="int" />
+    <Property Name="shareNum" Type="int" />
+  </EntityType>
+  <EntityType Name="t_Message">
+    <Key>
+      <PropertyRef Name="messageID" />
+    </Key>
+    <Property Name="messageID" Type="bigint" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="senderID" Type="bigint" Nullable="false" />
+    <Property Name="receriverID" Type="bigint" Nullable="false" />
+    <Property Name="message" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="messageTime" Type="datetime" Nullable="false" />
+    <Property Name="reply" Type="nvarchar(max)" />
+    <Property Name="type" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="t_Order">
+    <Key>
+      <PropertyRef Name="orderID" />
+    </Key>
+    <Property Name="orderID" Type="bigint" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="buyerID" Type="bigint" Nullable="false" />
+    <Property Name="status" Type="int" Nullable="false" />
+    <Property Name="tel" Type="nvarchar" Nullable="false" MaxLength="30" />
+    <Property Name="name" Type="nvarchar" Nullable="false" MaxLength="20" />
+    <Property Name="address" Type="nvarchar" Nullable="false" MaxLength="100" />
+    <Property Name="orderTime" Type="datetime" Nullable="false" />
+    <Property Name="isVisible" Type="bit" Nullable="false" />
+  </EntityType>
+  <EntityType Name="t_Recruitment">
+    <Key>
+      <PropertyRef Name="recruitmentID" />
+    </Key>
+    <Property Name="recruitmentID" Type="bigint" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="department" Type="nvarchar" Nullable="false" MaxLength="30" />
+    <Property Name="requirment" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="contactWay" Type="nvarchar" Nullable="false" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="t_Reply">
+    <Key>
+      <PropertyRef Name="replyID" />
+    </Key>
+    <Property Name="replyID" Type="bigint" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="commentID" Type="bigint" Nullable="false" />
+    <Property Name="replyTime" Type="datetime" Nullable="false" />
+    <Property Name="replyerID" Type="bigint" Nullable="false" />
+    <Property Name="reply" Type="nvarchar(max)" Nullable="false" />
+  </EntityType>
+  <EntityType Name="t_Role">
+    <Key>
+      <PropertyRef Name="roleID" />
+    </Key>
+    <Property Name="roleID" Type="bigint" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="roleName" Type="nvarchar" Nullable="false" MaxLength="50" />
+    <Property Name="remarks" Type="nvarchar(max)" />
+  </EntityType>
+  <EntityType Name="t_Role_Function">
+    <Key>
+      <PropertyRef Name="role_FuncitonID" />
+    </Key>
+    <Property Name="role_FuncitonID" Type="bigint" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="roleID" Type="bigint" Nullable="false" />
+    <Property Name="functionID" Type="bigint" />
+  </EntityType>
+  <EntityType Name="t_SaleRecord">
+    <Key>
+      <PropertyRef Name="orderID" />
+      <PropertyRef Name="goodsID" />
+    </Key>
+    <Property Name="orderID" Type="bigint" Nullable="false" />
+    <Property Name="goodsID" Type="bigint" Nullable="false" />
+    <Property Name="specification" Type="nvarchar" MaxLength="50" />
+    <Property Name="amount" Type="int" Nullable="false" />
+    <Property Name="size" Type="nvarchar" MaxLength="50" />
+    <Property Name="color" Type="nvarchar" MaxLength="50" />
+    <Property Name="remarks" Type="nvarchar(max)" />
+  </EntityType>
+  <EntityType Name="t_School">
+    <Key>
+      <PropertyRef Name="schoolID" />
+    </Key>
+    <Property Name="schoolID" Type="bigint" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="schoolName" Type="nvarchar" Nullable="false" MaxLength="40" />
+    <Property Name="remarks" Type="nvarchar(max)" />
+  </EntityType>
+  <EntityType Name="t_ShardGoods">
+    <Key>
+      <PropertyRef Name="shareID" />
+    </Key>
+    <Property Name="shareID" Type="bigint" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="customerID" Type="bigint" Nullable="false" />
+    <Property Name="friendsID" Type="bigint" Nullable="false" />
+    <Property Name="goodsID" Type="bigint" Nullable="false" />
+    <Property Name="isHostDel" Type="bit" Nullable="false" />
+    <Property Name="isFriendsDel" Type="bit" Nullable="false" />
+    <Property Name="shareTime" Type="datetime" Nullable="false" />
+    <Property Name="shareReason" Type="nvarchar(max)" Nullable="false" />
+  </EntityType>
+  <EntityType Name="t_SiteInfo">
+    <Key>
+      <PropertyRef Name="siteInfoID" />
+    </Key>
+    <Property Name="siteInfoID" Type="bigint" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="companyInfo" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="companyTel" Type="nvarchar" Nullable="false" MaxLength="30" />
+    <Property Name="companyEmail" Type="nvarchar" Nullable="false" MaxLength="50" />
+    <Property Name="companyAddress" Type="nvarchar" Nullable="false" MaxLength="100" />
+  </EntityType>
+  <EntityType Name="t_User">
+    <Key>
+      <PropertyRef Name="userID" />
+    </Key>
+    <Property Name="userID" Type="bigint" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="userName" Type="nvarchar" Nullable="false" MaxLength="20" />
+    <Property Name="loginName" Type="nvarchar" Nullable="false" MaxLength="50" />
+    <Property Name="registerTime" Type="datetime" Nullable="false" />
+    <Property Name="password" Type="nvarchar" Nullable="false" MaxLength="50" />
+    <Property Name="roleID" Type="bigint" Nullable="false" />
+    <Property Name="email" Type="nvarchar" MaxLength="50" />
+    <Property Name="sex" Type="int" />
+    <Property Name="tel" Type="nvarchar" Nullable="false" MaxLength="30" />
+    <Property Name="address" Type="nvarchar" MaxLength="100" />
+    <Property Name="remarks" Type="nvarchar(max)" />
+  </EntityType>
+  <Association Name="FK__t_Cart__customer__3D5E1FD2">
+    <End Role="t_Customer" Type="OldGoodsManageModel.Store.t_Customer" Multiplicity="1" />
+    <End Role="t_Cart" Type="OldGoodsManageModel.Store.t_Cart" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="t_Customer">
+        <PropertyRef Name="customerID" />
+      </Principal>
+      <Dependent Role="t_Cart">
+        <PropertyRef Name="customerID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__t_Cart__goodsID__3E52440B">
+    <End Role="t_Goods" Type="OldGoodsManageModel.Store.t_Goods" Multiplicity="1" />
+    <End Role="t_Cart" Type="OldGoodsManageModel.Store.t_Cart" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="t_Goods">
+        <PropertyRef Name="goodsID" />
+      </Principal>
+      <Dependent Role="t_Cart">
+        <PropertyRef Name="goodsID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__t_SaleRec__goods__571DF1D5">
+    <End Role="t_Goods" Type="OldGoodsManageModel.Store.t_Goods" Multiplicity="1" />
+    <End Role="t_SaleRecord" Type="OldGoodsManageModel.Store.t_SaleRecord" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="t_Goods">
+        <PropertyRef Name="goodsID" />
+      </Principal>
+      <Dependent Role="t_SaleRecord">
+        <PropertyRef Name="goodsID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__t_SaleRec__order__5629CD9C">
+    <End Role="t_Order" Type="OldGoodsManageModel.Store.t_Order" Multiplicity="1" />
+    <End Role="t_SaleRecord" Type="OldGoodsManageModel.Store.t_SaleRecord" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="t_Order">
+        <PropertyRef Name="orderID" />
+      </Principal>
+      <Dependent Role="t_SaleRecord">
+        <PropertyRef Name="orderID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__t_ShardGo__goods__5BE2A6F2">
+    <End Role="t_Goods" Type="OldGoodsManageModel.Store.t_Goods" Multiplicity="1" />
+    <End Role="t_ShardGoods" Type="OldGoodsManageModel.Store.t_ShardGoods" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="t_Goods">
+        <PropertyRef Name="goodsID" />
+      </Principal>
+      <Dependent Role="t_ShardGoods">
+        <PropertyRef Name="goodsID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema>

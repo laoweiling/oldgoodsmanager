@@ -1,0 +1,72 @@
+﻿@using PagedList;
+@using PagedList.Mvc;
+@model IEnumerable<OldGoodsManage.Models.t_Goods>
+
+@{
+    ViewBag.Title = "personalSell";
+    Layout = "~/Views/Shared/personalCenter.cshtml";
+    var goods = Model as IPagedList<OldGoodsManage.Models.t_Goods>;
+}
+@section Styles{
+  @Styles.Render("~/style/personalSell.css")
+  @Styles.Render("~/style/PagedList.css")
+}
+<div>
+<ul class="sellList">
+@foreach (var item in Model)
+{
+   <li>
+<div class="divSell">
+<div class="divImage">
+<a href="@Url.Action("GoodsDetails", "Goods", new { id =item.goodsID })"><img alt="商品图片" src="~/@item.goodsImage.Split(',')[0]" width="140px" height="130" title="查看详情"/></a> 
+<br />
+<a href="@Url.Action("GoodsDetails", "Goods", new { id =item.goodsID })"><span class="name">@item.goodsTitle</span></a>
+</div>
+<div class="divCommon">
+    <span>   
+      @*0:待审核，1:审核未通过，2:已发布，3:已下架，4:已锁定*@
+<p class="pTitle">审核状态</p>
+@if (item.goodsStatus == 0)
+{
+     <p class="pContent">正在审核</p>
+}
+@if (item.goodsStatus == 1)
+{
+     <p class="pContent">审核未通过</p>
+}
+@if (item.goodsStatus == 2)
+{
+     <p class="pContent">已发布</p>
+}
+@if (item.goodsStatus ==3)
+{
+     <p class="pContent">已下架</p>
+}
+@if (item.goodsStatus ==4)
+{
+     <p class="pContent">已锁定</p>
+}
+</span>
+</div> 
+<div class="divCommon" >
+<span>
+<p class="pTitle">发布时间</p>
+<p class="pContent">@item.releaseTime.ToString("yyyy-MM-dd")</p>
+</span>
+</div>
+<div class="divDelete">
+@if (item.goodsStatus < 2)
+{
+   <span class="spanA"><a href=@String.Format("{0}", @Url.Action("EditGoods", "Goods", new { id = item.goodsID }))>修改</a></span> 
+}
+<span class="spanA"><a onclick = "return confirm('确认删除？');" href=@String.Format("{0}", @Url.Action("DeleteGoods", "Goods", new { id = item.goodsID }))>删除</a></span>
+</div>
+</div>
+<div class="divLine"></div>
+</li> 
+}
+<div id="paged">
+   @Html.PagedListPager(goods,page => Url.Action("PersonalSell","Customer",new { page = page}))
+</div>
+</ul>
+</div>

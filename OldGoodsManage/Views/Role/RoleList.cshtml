@@ -1,0 +1,76 @@
+﻿@model OldGoodsManage.Models.t_Role
+
+@{
+    ViewBag.Title = "roleList";
+    Layout = "~/Views/Shared/_BgLayout.cshtml";
+    }
+@section Styles
+{
+    @Styles.Render("~/style/user.css")
+}
+  @using (Html.BeginForm())
+  {
+      <table width="100%" border="0" cellspacing="0" cellpadding="0">
+
+  <tr >  
+          <td height="62" background="../../Images/nav04.gif">
+		   <table width="98%" border="0" align="center" cellpadding="0" cellspacing="0">
+		    <tr>
+              <td>
+                   <input type="button" name="Submit2" value="返回" class="right-button02" onclick="window.history.go(-1);"/>
+              </td>
+			  
+               <td>
+                 @Html.ActionLink("添加角色", "AddRole")
+              </td>
+              
+		     </tr>
+             
+              
+             
+           </table>
+          </td>
+  </tr>
+  
+  <tr >
+
+                <td height="40">
+                <table width="100%" border="0" cellpadding="4" cellspacing="1" bgcolor="#464646" class="newfont03">
+
+				    <tr>
+                    <td height="20" colspan="14" align="center" bgcolor="#EEEEEE"class="tablestyle_title"> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;角色列表 &nbsp;</td>
+                    </tr>
+                    <tr>
+				   <td   class="td1">@Html.DisplayNameFor(model => model.roleID)</td>
+					<td   class="td1">@Html.DisplayNameFor(model => model.roleName)</td>
+                    <td   class="td1">@Html.DisplayNameFor(model => model.remarks)</td>
+                     <td  class="td1">操作</td>
+                  </tr>
+                   @foreach (OldGoodsManage.Models.t_Role singleRole in ViewBag.rolesList as List<OldGoodsManage.Models.t_Role>)
+                   {
+                    <tr  bgcolor="#FFFFFF">
+                     <td align="center">
+                      @Html.DisplayFor(item=>singleRole.roleID)
+                      </td>
+                      <td align="center">
+                     @Html.DisplayFor(item=>singleRole.roleName)
+                      </td>
+                       <td align="center">
+                      @Html.DisplayFor(item=>singleRole.remarks)
+                      </td>
+                       <td align="center">
+                         @Html.ActionLink("编辑", "EditRole", new { id =singleRole.roleID }) <br />
+                         @Html.ActionLink("查看权限", "RoleDetails", new { id = singleRole.roleID }) <br />
+                         <a id="alink" onclick = "return confirm('确认删除？');" href="@String.Format("{0}", @Url.Action("deleteRole", new { id = singleRole.roleID }))">删除该角色</a>
+                       </td>
+                      
+                  </tr>
+                   }
+                </table>
+                </td>
+  </tr>    
+
+
+ 
+</table> 
+  }

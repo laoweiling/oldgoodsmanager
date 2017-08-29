@@ -1,0 +1,163 @@
+@model OldGoodsManage.Models.t_Customer
+
+@{
+    ViewBag.Title = "个人资料";
+    Layout = "~/Views/Shared/personalCenter.cshtml";
+}
+
+@using (Html.BeginForm())
+{
+    <html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312" />
+<title>用户信息</title>
+
+<link rel="stylesheet" type="text/css" href="/style/fabu.css" /> 
+</head>
+<body >
+<div>
+<form action="../Customer/personalInfo" method="post">
+ <fieldset>
+ <div id="div1">
+    <table  style=" background-color:#E3EEEC">
+      <tr>
+              <td height="900"  valign="top" >
+               @foreach (OldGoodsManage.Models.t_Customer item in ViewBag.DataList as List<OldGoodsManage.Models.t_Customer>)
+               {
+              
+                  <table style="  background-color:#FFFAFA">
+                     <tr>
+                      <td height="66" width="100%" align="left"><p><strong style=" color:#A52A2A">基本资料</strong></p>
+					   <u></u>
+					   <hr></td>
+                    </tr>
+                    <tr>
+                      <td width="920" height="30" align="center">
+                      <div align="left" style="margin-left:90px"><strong>&nbsp;&nbsp;&nbsp @Html.DisplayNameFor(model => model.loginName): &nbsp;&nbsp</strong>
+                            @Html.DisplayFor(modelItem => item.loginName)
+                      </div></td>
+                    </tr>
+                    <tr>
+                      <td height="30" align="center">
+                      <div align="left" style="margin-left:90px"><strong> @Html.DisplayNameFor(model => model.customerName)：&nbsp;&nbsp</strong>
+                         @Html.DisplayFor(modelItem => item.customerName)
+                        </div>
+                        </td>
+                    </tr>
+                    <tr>
+                      <td height="30" align="left">
+                        <div align="left" style="margin-left:90px">
+                          @if (item.sex == 0)
+                          {
+                             <strong>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;性别：&nbsp;&nbsp 女</strong> 
+                              
+                          }
+                          @if (item.sex == 1)
+                          {
+                             <strong>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;性别：&nbsp;&nbsp 男</strong> 
+                              
+                          }
+                         
+                      </div>   
+                      </td>
+                    </tr>
+                     
+                    <tr>
+                      <td height="30" align="left">
+                      <div align="left" style="margin-left:90px">
+
+                      <strong>
+                      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;学校：&nbsp;&nbsp 
+
+                       </strong> 
+                          @ViewBag.schoolID
+                      </div>
+                     </td>
+                    </tr>
+
+                    <tr>
+                    <td height="30" align="left">
+                     <div align="left" style="margin-left:90px">
+                   @if (item.customerType == 0)
+                   {
+                          <strong>用户类型：&nbsp;&nbsp 金牌</strong>
+                   }
+                      @if (item.customerType == 1)
+                      {
+                          <strong>用户类型：&nbsp;&nbsp 银牌</strong>
+                      }
+                         @if (item.customerType == 2)
+                         {
+                          <strong> 用户类型：&nbsp;&nbsp 铜牌</strong>
+                         }
+                        </td>
+                      </tr>
+
+                    <tr>
+                      <td height="66" align="left"><p><strong style=" color:#A52A2A">联系方式</strong></p>
+					   <u></u>
+					   <hr></td>
+                    </tr>
+                    <tr>
+                      <td height="49" align="left"><div align="left" style="margin-left:120px"><strong>@Html.DisplayNameFor(model => model.address)：</strong>
+                        @Html.DisplayFor(modelItem => item.address)
+                      </div>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td height="43" align="left"><div align="left" style="margin-left:90px"><strong> @Html.DisplayNameFor(model => model.tel)：</strong>
+                       @Html.DisplayFor(modelItem => item.tel)
+                        </div>
+                      </td>
+                    </tr>
+                     <tr>
+                      <td height="43" align="left"><div align="left" style="margin-left:120px"><strong>@Html.DisplayNameFor(model => model.email)：</strong>
+                       @Html.DisplayFor(modelItem => item.email)
+                        </div>
+                      </td>
+                    </tr>
+                     <tr>
+                      <td height="43" align="left"><div align="left" style="margin-left:120px"><strong>@Html.DisplayNameFor(model => model.remarks)：</strong>
+                       @Html.DisplayFor(modelItem => item.remarks)
+                        </div>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td height="29">&nbsp;</td>
+                    </tr>
+                    <tr>
+                      <td height="50" align="left"><div align="left" style="margin-left:150px">
+                               <input type="submit" name="submit" value="我要修改"/>
+                       </div>  
+                       <br />  
+                       <br />      
+                       <br />      
+                       <br />      
+                       <br />      
+                       <br />      
+                       </td>
+                    </tr>
+                  </table>
+
+               }
+              </td>
+
+       
+      </tr>
+    </table>
+   
+</div>  
+ 
+ </fieldset> 
+</form>
+
+</div>
+</body>
+</html> 
+}
+
+
+
+@section Styles{
+  @Styles.Render("~/style/personalInfo.css")
+}

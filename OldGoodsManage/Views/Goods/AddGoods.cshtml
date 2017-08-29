@@ -1,0 +1,292 @@
+﻿@model OldGoodsManage.Models.t_Goods
+@{
+    ViewBag.Title = "AddGoods";
+    Layout = "~/Views/Shared/_FgLayout.cshtml";
+}
+<h2>发布商品信息</h2>
+@using (Html.BeginForm("AddGoods","Goods",FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+   
+    @Html.ValidationSummary(true)
+
+ <link rel="stylesheet" type="text/css" href="~/style/fabu.css" />  
+<style>
+.perview {width:600px;background:#fff;font-size:12px; border-collapse:collapse;}
+.perview td, .perview th {padding:5px;border:1px solid #ccc;}
+.perview th {background-color:#f0f0f0; height:20px;}
+.perview a:link, .perview a:visited, .perview a:hover, .perview a:active {color:#00F;}
+.perview table{ width:100%;border-collapse:collapse;}
+</style>
+<script src="~/Scripts/CJL.0.1.min.js"></script>
+<script src="~/Scripts/QuickUpload.js"></script>
+<script src="~/Scripts/ImagePreview.js"></script> 
+<script src="../../Scripts/jquery-1.7.1.min.js" type="text/javascript"></script>
+<script src="../../Scripts/jquery.validate.min.js" type="text/javascript"></script>    
+<script src="../../Scripts/jquery.validate.unobtrusive.min.js" type="text/javascript"></script>    
+    
+<script type="text/javascript">// <![CDATA[
+    $(document).ready(function () {
+        $("select[name='GoodsType']").change(function () {
+            var url = "/Goods/GetCategory/" + $("#GoodsType").val() + "/"; //规则是控制器/方法/参数
+            $.getJSON(url, function (data) {
+                $('#GoodsSubType').html('');
+                $.each(data, function (i, item) {
+                    $('#GoodsSubType').append($("<option></option>").val(item.categoryID).html(item.categoryName));
+                });
+            });
+        });
+    });// ]]>
+</script> 
+    <fieldset>
+        <table id="table0" cellpadding="0" cellspacing="0">
+        <tr>
+             <td height="100" colspan="4"><blockquote>
+              <p style="margin-left:60%"><img src="~/Images/Fabu.png" width="37" height="37" style="margin-left:50px" /></p>
+               <p  style="margin-left:60%">----------------------------------</p>
+               <p  style="margin-left:60%"><span class="STYLE3 STYLE5">发布商品</span></p>
+               </blockquote>
+               </td>
+         </tr>
+         <tr>
+         <td class="td_margin"></td>
+         <td height="30" style="background-color:white" colspan="4" ><p><strong>请上传图片</strong>（<span class="STYLE4">最多3张,每张不能超过1M</span>）</p>
+           <u></u>
+	       <hr></td>
+            <td class="td_margin"></td></tr>
+        <tr style="margin-top:1px"><td class="td_margin" height="1"></td>
+             <td colspan="4" style="background-color:White">
+                 <table class="perview" id="table_image" cellpadding="0" cellspacing="0" style="margin-top: 0px">
+                     <tr>
+                         <th align="right"> 选择图片： </th>
+                         <td width="75%" align="left">
+                             <div><input type="button" onclick="addfile()" value="添加图片"/>
+                             </div></td>
+                     </tr>
+                     <tr>
+                         <td colspan="2"><table cellpadding="0" cellspacing="0">
+                                 <thead>
+                                 <tr>
+                                     <th> 文件路径 </th>
+                                     <th width="30%"> 预览图 </th>
+                                     <th width="20%"> 操作 </th>
+                                 </tr>
+                                 </thead>
+                                 <tbody id="idPicList">
+                                 <tr style="display: none">
+                                     <td><input type="file" name="image1" id="image1" onchange="viewimage('image1', 'picimage1')"/></td>
+                                     <td align="center"><img id="picimage1" src="" alt="第一张图片"/></td>
+                                     <td align="center"><a onclick="RemoveImage('image1', 'picimage1', 1)" href="#">移除</a></td>
+                                 </tr>
+                                 <tr style="display: none">
+                                     <td><input type="file" name="image2" id="image2" onchange="viewimage('image2', 'picimage2')"/></td>
+                                     <td align="center"><img id="picimage2" src="" alt="第二张图片"/></td>
+                                     <td align="center"><a onclick="RemoveImage('image2', 'picimage2', 2)" href="#">移除</a></td>
+                                 </tr>
+                                 <tr style="display: none">
+                                     <td><input type="file" name="image3" id="image3" onchange="viewimage('image3', 'picimage3')"/></td>
+                                     <td align="center"><img id="picimage3" src="" alt="第三张图片"/></td>
+                                     <td align="center"><a onclick="RemoveImage('image3', 'picimage3', 3)" href="#">移除</a></td>
+                                 </tr>
+                                 </tbody></table>
+                         </td></tr>
+                 </table>
+                 <script type="text/javascript">
+                     window.imagecount = 0;
+                     //添加图片的响应函数
+                     function addfile() {
+                         if (3 == window.imagecount) {
+                             alert("已经添加了3张图片!");
+                             return;
+                         }
+                         var table = $$("idPicList");
+                         for (i = 0; i < 3; i++) {
+                             tr = table.getElementsByTagName("tr")[i];
+                             if ("none" == tr.style.display) {
+                                 tr.style.display = "inline";
+                                 break;
+                             }
+                         }
+                     }
+
+                     //显示用户输入路径的图片
+                     function viewimage(imageId, picimageId) {
+                         document.getElementById(imageId).select();
+                         var imagepath = document.selection.createRange().text;
+                         if (false == CheckPreview(imageId)) {
+                             return;
+                         }
+                         paths += imagepath + "|";
+                         //设置预览图片的路径，高度和宽度
+                         var picImage = this.document.getElementById(picimageId);
+                         picImage.src = imagepath;
+                         picImage.height = 100;
+                         picImage.width = 100;
+                         window.imagecount = window.imagecount + 1;
+                     }
+
+                     //检测输入图片的合法性
+                     var exts = "jpg|gif|bmp", paths = "|";
+                     function CheckPreview(imageId) {
+                         var file = document.getElementById(imageId);
+                         var value = file.value, check = true;
+                         if (!value) {
+                             check = false; alert("请先选择文件！");
+                         } else if (!RegExp("\.(?:" + exts + ")$$", "i").test(value)) {
+                             check = false; alert("只能上传以下类型：" + exts);
+                         } else if (paths.indexOf("|" + value + "|") >= 0) {
+                             check = false; alert("已经有相同文件！");
+                         }
+                         check || ResetFile(file);
+                         return check;
+                     }
+
+                     //移除按钮对应的响应函数，将图片设置为空，并把该行隐藏
+                     function RemoveImage(imageId, picimageId, rowCount) {
+                         var table = $$("idPicList");
+                         tr = table.getElementsByTagName("tr")[rowCount - 1];
+                         tr.style.display = "none";
+                         var picImage = this.document.getElementById(picimageId);
+                         picImage.src = "";
+                         picImage.height = 0;
+                         picImage.width = 0;
+                         window.imagecount = window.imagecount - 1;
+                         var file = this.document.getElementById(imageId);
+
+                         //从path中去除图片路径
+                         var imagePath = file.value + "|";
+                         paths = paths.replace(imagePath, "");
+
+                         //清空file控件
+                         ResetFile(file);
+                     }
+                     function ResetFile(file) {
+                         file.value = ""; //ff chrome safari
+                         if (file.value) {
+                             if ($$B.ie) {//ie
+                                 with (file.parentNode.insertBefore(document.createElement('form'), file)) {
+                                     appendChild(file); reset(); removeNode(false);
+                                 }
+                             } else {//opera
+                                 file.type = "text"; file.type = "file";
+                             }
+                         }
+                     }
+                </script>
+             </td>
+             <td class="td_margin"></td></tr>
+         <tr>
+         <td class="td_margin"></td>
+         <td height="30" style="background-color:white" colspan="4" ><p><strong>商品基本信息</strong>（<span class="STYLE4">*必填</span>）</p>
+           <u></u>
+	       <hr></td>
+            <td class="td_margin"></td></tr> 
+         <tr><td class="td_margin"></td>
+            <td align="left"class="td_name">
+            <div align="left" style="margin-left:20px;"><strong>商品名称: </strong> 
+            </div></td>
+            <td class="td_content">
+             <div style="color:Red" align="left" class="editor-field">  
+              @Html.EditorFor(model => model.goodsTitle)*
+              @Html.ValidationMessageFor(model => model.goodsTitle)</div></td>
+            <td align="left"class="td_name">
+             <div align="left"><strong>交易地点：</strong></div></td>
+            <td class="td_content">
+             <div style="color:Red" align="left">  
+              @Html.EditorFor(model => model.tradeAddress)*
+              @Html.ValidationMessageFor(model => model.tradeAddress)</div></td>
+              <td class="td_margin"></td></tr>
+        <tr><td class="td_margin"></td>
+            <td align="left" class="td_name">
+                <div align="left" style="margin-left: 20px"><strong>价格：</strong>
+                </div></td>
+            <td algin="left" class="td_content">
+                <div style="color: Red">
+                    @Html.EditorFor(model => model.goodsPrice)*
+                    @Html.ValidationMessageFor(model => model.goodsPrice)</div></td>
+            <td align="left" class="td_name">
+                <div align="left"><strong>分类：</strong>
+                </div></td>
+            <td algin="left" class="td_content">
+                <div algin="left">
+                    商品大类：@Html.DropDownList("GoodsType")
+                    商品小类：@Html.DropDownList("GoodsSubType")</div></td>
+            <td class="td_margin"></td></tr>
+        <tr><td class="td_margin"></td>
+            <td align="left"class="td_name">
+              <div style="margin-left:20px;"><strong>@Html.LabelFor(model=>model.inventory)</strong></div></td>
+              <td class="td_content" colspan="3">@Html.EditorFor(model=> model.inventory)</td>
+              <td class="td_margin">
+          </tr>
+        <tr><td class="td_margin"></td>
+            <td align="left"class="td_name">
+              <div style="margin-left:20px;"><strong>所在学校：</strong></div></td>
+              <td class="td_content" colspan="3">@Html.DropDownList("SchoolType")</td>
+              <td class="td_margin">
+          </tr>
+         <tr><td class="td_margin"></td>
+             <td align="left"class="td_name">
+                 <div align="left" style="margin-left:20px"><strong> 商品详情：</strong></div></td>
+             <td class="td_content" colspan="3">
+              <div style="color:Red"> 
+              @Html.TextAreaFor(model => model.goodsInfo)*
+              @Html.ValidationMessageFor(model => model.goodsInfo)</div></td>         
+             <td class="td_margin"></td></tr>
+        <tr><td class="td_margin"></td>
+            <td class="td_name" colspan="4">
+             <p><strong>联系方式</strong>（<span class="STYLE4">至少选填一项</span>）</p>
+		     <u></u>
+	         <hr></td>
+            <td class="td_margin"></td></tr>
+        <tr><td class="td_margin"></td>
+            <td class="td_name">
+                <div align="left" style="margin-left: 20px"><strong>QQ：</strong>
+                </div></td>
+            <td class="td_content">
+                <div style="color: Red">
+                    @Html.EditorFor(model => model.contactQQ)
+                    @Html.ValidationMessageFor(model => model.contactQQ)</div></td>
+            <td class="td_name">
+                <div align="left"><strong>Tel：</strong>
+                </div></td>
+            <td class="td_content">
+                <div style="color: Red">
+                    @Html.EditorFor(model => model.contactTel)
+                    @Html.ValidationMessageFor(model => model.contactTel)</div></td>
+            <td class="td_margin"></td></tr>
+        <tr><td class="td_margin"></td>
+            <td class="td_name">
+             <div align="left" style="margin-left:20px"><strong>@Html.LabelFor(model => model.remarks)</strong> </div></td> 
+            <td class="td_content">
+               <div style="color:Red"> 
+                 
+                 @Html.EditorFor(model => model.remarks)</div></td> 
+            <td class="td_name">
+                <div align="left"><strong></strong>
+                </div></td>
+            <td class="td_content">
+                <div style="color: Red">
+                     
+                     </div></td>
+            <td class="td_margin"></td></tr>
+        <tr><td class="td_margin"></td>
+          <td height="50" align="left" colspan="2"><div align="left" style="margin-left:150px">
+                               <input type="submit" name="Action" value="我要发布"/>
+                       </div>       
+                       </td>
+           <td>
+             
+
+              
+           </td>
+                       <td class="td_margin"></td>
+                    </tr>
+         <tr><td colspan="6" height="50">
+         <div style="margin-left:90px">
+</div>
+         </td></tr>
+        </table>
+    </fieldset>
+}
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

@@ -1,0 +1,96 @@
+﻿@model IEnumerable<OldGoodsManage.Models.t_School>
+
+@{
+    Layout = "~/Views/Shared/_BgLayout.cshtml";
+    ViewBag.Title = "";
+    string divEdit = "divE";
+    string divHidden = "divH";
+}
+<script language="javascript" type="text/javascript">
+    function creat() {
+        var schoolName = document.getElementById("input").value;
+        if (schoolName == "")
+            alert("请输入合法值");
+        else {
+            var url = "/School/Create?name=" + schoolName;
+            window.location.href = url;
+        }
+    }
+    function onclickEdit(changeDiv) {
+        document.getElementById('divH' + changeDiv).style.display = 'block';
+        text = document.getElementById(changeDiv);
+        text.innerHTML = "<input type='text' id=-" + changeDiv + " value=" + text.innerHTML + " size = '16' style='height:20;font-size:14px' />";
+        document.getElementById('divE' + changeDiv).style.display = 'none';
+    }
+    function onclickSave(changeDiv) {
+
+        var text1 = document.getElementById('-' + changeDiv);
+        var val = text1.value;
+        var text2 = document.getElementById(changeDiv);
+        text2.innerHTML = val;
+
+        document.getElementById('divH' + changeDiv).style.display = 'none';
+        document.getElementById('divE' + changeDiv).style.display = 'block';
+        var url = "/School/Edit/" + changeDiv + "?name=" + val;
+        window.location.href = url;
+    }
+    function cancel() {
+        var url = "/School/ShowSchoolInfo";
+        window.location.href = url;
+    }
+</script>  
+<table  width="1000px">
+<tr>
+    <td style="FONT-WEIGHT: bold; COLOR: #fff;" colspan="8" height="30" bgcolor="#6495ED" align="center" >校区管理 &nbsp;&nbsp;</td>
+</tr>
+</table>
+<table style="float:right;margin-top:10px;margin-right:350px;"  width="600" border="2" cellspacing="0" cellpadding="1" >
+    <tr>
+        <th width="300" height="30"  bgcolor="#d1e6f7" align="center" valign="middle"><font size="4">学校名称</font>
+        </th>
+        <th width="300" height="30"  bgcolor="#d1e6f7" align="center" valign="middle"><font size="4">操作</font>
+        </th>
+    </tr>
+
+@{
+     
+    foreach (var school in Model)
+    {
+
+            <tr>
+                 <td  height = "25" valign="middle">
+                    <center><strong><font size="3">
+                        <div id=@school.schoolID.ToString()>@Html.DisplayFor(modelItem => school.schoolName)</div>
+                        </font></strong>
+                    </center>
+                 </td>
+                  <td>
+                     <center>
+                           <div id=@divEdit@school.schoolID.ToString()><font size="3">
+                           <a href = "#" id="onclickEdit" onclick="onclickEdit(@school.schoolID.ToString())">编辑</a>|
+                               @Html.ActionLink("删除", "Delete", new { id = school.schoolID }, new { onclick = "javascript:return confirm('确定删除该校记录吗！?');" })
+                           </font></div>
+                           <div id=@divHidden@school.schoolID.ToString() style="display:none;">
+                           <a href="#" id="onclickSave" onclick="onclickSave(@school.schoolID.ToString())"><font size="3">保存</font></a><font size="3">|&nbsp;</font><a href="#" id="cancel" onclick="cancel()"><font size="3">取消</font></a>
+                           </div>  
+                     </center>  
+                  </td>                    
+              </tr>      
+    }
+}    
+</table>
+
+<table style="float:right;margin-top:10px;margin-right:350px;"  width="600" border="0" cellspacing="0" cellpadding="1" >
+                <tr>
+                    <td height = "25" valign="middle">
+                        <center><font size="3"><strong>新增学校记录:</strong></font></center>      
+                    </td>
+                    <td>
+                        <center>
+                            <input type="text"  name="input" id="input" size = "16" style="height:22;font-size:14px" /> &nbsp;
+                            <input type="submit" name="sumbit" id="submit" onclick = "create();" style="width:45; height:24; font-size:15px;"/>
+                        </center> 
+                    </td>
+                </tr>
+
+</table>

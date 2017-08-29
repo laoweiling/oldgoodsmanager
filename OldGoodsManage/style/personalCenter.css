@@ -1,0 +1,83 @@
+﻿html, body, div, header, footer, form, p, input, button, h1, h2, h3, h4, h5, h6, ul, li, img {
+margin: 0;
+border: 0;
+padding: 0;
+outline: none;
+}
+body {
+font-family: 'Helvetica Neue', Helvetica, "Hiragino Sans GB", "Microsoft YaHei", "SimSun", Arial, Sans-serif;
+font-size: 12px;
+color: #121212;
+-webkit-font-smoothing: antialiased;
+}
+#divMain{
+background-color:#E3EEEC;
+width:100%;
+min-width: 960px;
+height:1070px;
+}
+#divCustName{
+width:80%;
+margin-left:120px;
+background-color:#FFFFFF;
+height:50px;
+}
+.custName
+{
+color:#666666;
+font-size: 20px;
+font-weight: 400;
+margin-bottom: 15px;
+text-align:center;
+padding-top:20px;
+}
+#divCustFunc
+{
+    width:80%;
+    margin-left:120px;
+background-color:#FFFFFF;
+height:50px;
+margin-top:30px;
+    }
+.divContent{
+ width:80%;
+margin-left:120px;
+background-color:#FFFFFF;
+height:790px;
+margin-top:30px;        
+        }
+.funcTable
+{
+    width:100%;
+    border:1;
+    height:50px;
+    border-top: 4px solid #000000;
+    }
+.funcTr
+{
+    text-align:center;
+    color:White;
+   font-size:1.17em;
+   background-color:#8e0000;
+   /*cursor: pointer;*/
+    }
+.funcTd:hover
+{
+    background-color:#000000;
+}
+.funcTd a:link { 
+color:White; 
+text-decoration:none;
+} 
+.funcTr td a:visited { 
+color:White; 
+} 
+
+#trFriends td{
+    width:33%;
+}
+    
+#paged {
+    position: relative;
+    left: 650px;
+} 

@@ -1,0 +1,44 @@
+﻿@using OldGoodsManage.Models;
+@{
+    ViewBag.Title = "messageList";
+    Layout = "~/Views/Shared/_BgLayout.cshtml";
+    Dictionary<long, string> dictSenderName = ViewBag.dictSenderName; 
+}
+@section Styles{
+    @Styles.Render("~/Styles/user.css")
+}
+<link href="../../style/user.css" rel="stylesheet" type="text/css" />
+    @using (Html.BeginForm("DeleteMessage", "Message"))
+    {
+    <div>
+    <table width="100%" border="0" cellspacing="0" cellpadding="0">
+       <tr >   
+          <td height="62" background="../../Images/nav04.gif">
+          </td>
+        </tr>
+    </table>
+                    
+
+    <table width="100%">
+      <tr  align="center">
+        <td height="20" colspan="4" style="font-size: x-large;"  bgcolor="#EEEEEE"class="tablestyle_title">已 发 送 的 消 息</td>
+      </tr>
+      <tr  style="font-size: large;font-weight:bold;">
+        <td  class="td1" >接收人</td>
+        <td   class="td1">消息</td>  
+        <td   class="td1">发送时间</td>  
+        <td   class="td1">回复内容</td>  
+      </tr>
+        @foreach (t_Message message in (List<t_Message>)ViewBag.listMessage)
+        {
+             <tr style="font-size: larger;">
+                <td class="td1">@dictSenderName[message.senderID]</td>
+                <td class="td1">@message.message</td>
+                <td class="td1">@message.messageTime.ToString("yyyy-MM-dd")</td>
+                <td class="td1">@(message.reply == null?"无":message.reply)</td>                   
+             </tr>
+        }
+    </table>
+    </div>
+    } 
+ 

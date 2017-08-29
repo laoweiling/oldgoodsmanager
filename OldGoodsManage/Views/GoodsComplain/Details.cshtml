@@ -1,0 +1,43 @@
+﻿@model OldGoodsManage.Models.t_GoodsComplain
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<fieldset>
+    <legend>t_GoodsComplain</legend>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.goodsID)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.goodsID)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.reporterID)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.reporterID)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.reason)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.reason)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.complainTime)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.complainTime)
+    </div>
+</fieldset>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id=Model.GoodsComplainID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

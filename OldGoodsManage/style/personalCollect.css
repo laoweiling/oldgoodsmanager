@@ -1,0 +1,87 @@
+﻿#collect
+{
+    background-color:#000000;
+    }
+.collectionList li
+  {
+   margin-top: 16px;
+   }
+ .divcollection
+   {
+      width:100%;
+      padding-top:10px;
+      height:150px;
+       }
+ .divImage
+{
+    width:140px;
+    float:left
+    }
+    .name
+{
+    width:140px;
+   color: #666666;
+   font-size: 1.17em;
+    cursor: pointer;
+    margin-left:20px;
+    }
+ .divLine
+ {
+     width:100%;
+      height:5px; 
+      background-color:#8e0000
+     }
+#alink:hover
+{
+    color:#8e0000;
+    }
+#alink:link{
+color:#8e0000;
+
+}
+#alink:visited {
+color:#8e0000;
+}
+#divBottom
+{
+    float:left;
+    margin-left:30px;
+    width:740px;
+    height:50px;
+    }
+#divDetail
+{
+    width:650px;
+    height:50px;
+    float:left
+    }
+#divDesc
+{
+  float:left;
+  margin-left:30px;
+  width:740px;
+  height:100px;
+  overflow:auto;
+  color: #666666;
+  font-size: 1.17em;
+    }
+    
+    
+#price
+{
+    margin-top:20px;
+    color: #8e0000;
+    font-size: 1.5em
+    }
+ #divDele
+ {
+     float:left;
+      width:90px;
+      height:50px;
+     }
+ #pdelete
+ {
+     margin-top:20px;
+     color: #000000;
+     font-size: 1.3em
+     }

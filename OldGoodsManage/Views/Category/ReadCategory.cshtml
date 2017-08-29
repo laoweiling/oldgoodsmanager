@@ -1,0 +1,46 @@
+﻿@model IEnumerable<OldGoodsManage.Models.t_Category>
+
+@{
+    ViewBag.Title = "Category";
+}  
+
+ <div class="headNav">
+  <div class="navCon">
+    <div class="navCon-cate fl">
+      <div class="navCon-cate-title">@Html.ActionLink("全部商品分类","ReadGoods","Goods")</div>
+	  <div class="cateMenu">
+        <ul>
+        @foreach (OldGoodsManage.Models.t_Category fir in ViewBag.firTitle)
+        {
+   
+		   <li style="border-top:none;">
+            <div class="cate-tag">@Html.ActionLink(fir.categoryName, "ReadGoods", "Goods", new { id = 1, categoryId = fir.categoryID }, null)</div>
+			  <div class="list-item hide">
+              @foreach (OldGoodsManage.Models.t_Category sec in ViewBag.secTitle)
+              {
+                  if (sec.parentID == fir.categoryID)
+                  {
+                      <ul class="itemleft">
+                        <dl>
+                          <dt>@Html.ActionLink(sec.categoryName, "ReadGoods", "Goods", new { id = 1, categoryId = sec.categoryID }, null)</dt>
+                        </dl>
+                      </ul>
+                  }
+
+              }
+
+            </div>
+          </li>
+           
+        }
+		</ul>
+	  </div>
+	</div>
+	 <div class="navCon-menu fl">
+      <ul>
+        <li>@Html.ActionLink("首页", "ReadGoods", "Goods", "", new { @class = "curMenu" })</li>
+        <li>@Html.ActionLink("个人中心", "PersonalInfo", "Customer", "", new { @class = "curMenu" })</li>
+      </ul>
+    </div>
+  </div>
+  </div>

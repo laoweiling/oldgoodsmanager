@@ -1,0 +1,85 @@
+﻿@model IEnumerable<OldGoodsManage.Models.t_GoodsComplain>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_BgLayout.cshtml";
+}
+<script type="text/javascript" language="javascript" >
+    //全选
+    function checkAll() {
+        var ids = document.getElementsByName('chkId');
+        for (i = 0; i < ids.length; i++)
+            ids[i].checked = true;
+    }
+    //反选
+    function uncheckAll() {
+        var ids = document.getElementsByName('chkId');
+        for (i = 0; i < ids.length; i++) {
+            ids[i].checked = false;
+        }
+    }
+</script>
+
+@using (Html.BeginForm())
+
+ {
+  <table>
+  <tr>
+  <td style="FONT-WEIGHT:bold; COLOR:#fff;" colspan="8" height="30" bgcolor="#6495ED" align="center">举报商品的详细列表 &nbsp;&nbsp;</td>
+  </tr>
+  
+  <tr>
+    
+      <td width="230" height="52" background="../../Images/nav04.gif">
+      <input id="button1" type="button" onclick="checkAll()" value="全选" class="button" />
+      <input id="button2" type="button" onclick="uncheckAll()" value="反选" class="button" />
+      </td>
+      <td width="1030"  height="52" background="../../Images/nav04.gif">
+      <input type="submit" id="Submit2" value="删除" name="submit" /> 
+      </td>
+     </tr>
+   </table>  
+      <table border="1" cellspacing="0" cellpadding="0" width="100%"> 
+                   
+                  <tr> 
+                    <td   height="40" bgcolor="#d1e6f7"  class="td1" ></td>
+                    <td  bgcolor="#d1e6f7" class="td1">商品标题</td>
+					<td   bgcolor="#d1e6f7"  class="td1">用户的姓名</td>
+                    <td  bgcolor="#d1e6f7" class="td1">举报的时间</td>
+                    <td  bgcolor="#d1e6f7" class="td1">举报的理由</td>
+                   
+                  </tr>
+    
+
+@foreach (OldGoodsManage.Models.t_GoodsComplain item in ViewBag.DataList as List<OldGoodsManage.Models.t_GoodsComplain>)
+{
+    <tr>
+
+    <td width="120">
+           <input type="checkbox" id="chkId" name="chkId" value="@Html.Encode(item.goodsID)" />
+        </td>
+
+        <td width="150">
+            @Html.DisplayFor(modelItem => item.goodsID)
+        </td>
+        <td  width="120">
+            @Html.DisplayFor(modelItem => item.reporterID)
+        </td>
+         <td width="120">
+            @Html.DisplayFor(modelItem => item.complainTime)
+        </td>
+        <td height="50">
+         @Html.DisplayFor(modelItem => item.reason) 
+        @* @Html.ListBox("DataList")*@
+        @* @Html.TextBox("@Html.DisplayFor(modelItem =>item.reason)")*@
+     
+            </td>
+      
+       
+    </tr>
+  
+}
+  </table>
+    
+}
+

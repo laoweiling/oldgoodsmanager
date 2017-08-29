@@ -1,0 +1,101 @@
+@model  OldGoodsManage.Models.t_Feedback
+
+@{
+    ViewBag.Title = "反馈信息";
+    Layout = "../Shared/_BgLayout.cshtml";
+}
+
+ @using (Html.BeginForm())
+ {
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312" />
+<title>反馈管理</title>
+<link href="../../style/user.css"   type="text/css"  rel="Stylesheet" />
+
+</head>
+<body>
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+
+  <tr >  
+          <td height="62" background="../../Images/nav04.gif">
+		   <table width="98%" border="0" align="center" cellpadding="0" cellspacing="0">
+		    <tr>
+			  <td width="24"><img src="../../Images/ico07.gif" width="20" height="18"  alt=""/></td>
+			  <td width="420">
+                  根据是否已读查询：<select id="Select1" name="select">
+                       <option></option>
+                      <option>已读</option>
+                       <option>未读</option>
+                  </select>
+                  <input id="Submit1" type="submit" class="right-button02" name="submit" value="查询" />
+              </td>
+              <td>
+			  <input type="button" name="Submit2" value="返回" class="right-button02" onclick="window.history.go(-1);"/>	
+              </td>
+             
+		     </tr>
+             
+              
+             
+           </table>
+          </td>
+  </tr>
+  
+  <tr >
+
+                <td height="40">
+                <br />
+                <table width="800px" border="0" cellpadding="4" cellspacing="1" bgcolor="#464646" class="newfont03">
+
+				    <tr>
+                    <td height="20" colspan="14" align="center" bgcolor="#EEEEEE"class="tablestyle_title"> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;客户详细列表 &nbsp;</td>
+                    </tr>
+                    <tr>
+				   <td   class="td1">@Html.DisplayNameFor(model => model.feedbackID)</td>
+					<td   class="td1">@Html.DisplayNameFor(model => model.contactWay)</td>
+                    <td   class="td1">@Html.DisplayNameFor(model => model.status)</td>
+                    <td   class="td1">@Html.DisplayNameFor(model => model.feedbackTime)</td>
+                    <td  class="td1">操作</td>
+                  </tr>
+                  @foreach (OldGoodsManage.Models.t_Feedback item in ViewBag.DataList as List<OldGoodsManage.Models.t_Feedback>)
+                  {
+                    <tr  bgcolor="#FFFFFF">
+                     
+                      <td>
+                      @Html.DisplayFor(modelItem => item.feedbackID)
+                      </td>
+                      <td>
+                      @Html.DisplayFor(modelItem => item.contactWay)
+                      </td>
+                      @if (item.status == 0)
+                      {
+                          <td>否</td>
+                      }
+                          @if (item.status == 1)
+                          {
+                          <td>是</td>
+                          }
+                      
+                       <td>
+                       @Html.DisplayFor(modelItem => item.feedbackTime)
+                       </td>
+                       <td align="center">
+
+                         @Html.ActionLink("查看", "FeedbackDetails", new { id = item.feedbackID }) |
+                         @Html.ActionLink("删除", "DeleteFeedback", new { id = item.feedbackID }, new { onclick = "return confirm('确认删除？');" })
+                        
+                       </td>
+                      
+                  </tr>
+                  }
+                </table>
+                </td>
+  </tr>    
+       
+ 
+</table>
+
+</body>
+</html>
+ }

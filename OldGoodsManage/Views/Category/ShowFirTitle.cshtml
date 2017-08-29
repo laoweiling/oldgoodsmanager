@@ -1,0 +1,100 @@
+﻿@model IEnumerable<OldGoodsManage.Models.t_Category>
+
+@{
+    Layout = "~/Views/Shared/_BgLayout.cshtml";
+    ViewBag.Title = "";
+    string divEdit = "divE";
+    string divHidden = "divH";
+}
+<script language="javascript" type="text/javascript">
+    function create() {
+        var categoryName = document.getElementById("input").value;
+        if (categoryName == "")
+            alert("请输入合法值");
+        else {
+            var url = "/Category/CreateFirTitle?name=" + categoryName;
+            window.location.href = url;
+        }
+    }
+    function onclickEdit(changeDiv) {
+        document.getElementById('divH' + changeDiv).style.display = 'block';
+        text = document.getElementById(changeDiv);
+        text.innerHTML = "<input type='text' id=-" + changeDiv + " value=" + text.innerHTML + " style= width:105; height:30; font-size:30px; fontWeight:bold/>";
+        document.getElementById('divE'+changeDiv).style.display = 'none';
+    }
+    function onclickSave(changeDiv) {
+
+         var text1 = document.getElementById('-'+changeDiv);
+         var val = text1.value;
+        var text2 = document.getElementById(changeDiv);
+        text2.innerHTML = val;
+        
+        document.getElementById('divH'+changeDiv).style.display = 'none';
+        document.getElementById('divE' + changeDiv).style.display = 'block';
+        var url = "/Category/EditFirTitle/" + changeDiv + "?name=" + val;
+        window.location.href = url;
+    }
+    function cancel() {
+        var url = "/Category/ShowFirTitle";
+        window.location.href = url;
+    }
+
+
+</script>  
+<h2></h2>
+<table  width="1000px">
+<tr>
+    <td style="FONT-WEIGHT: bold; COLOR: #fff;" colspan="8" height="30" bgcolor="#6495ED" align="center">商品分类管理 &nbsp;&nbsp;</td>
+</tr>
+</table>
+<table style="float:right;margin-top:10px;margin-right:350px;"  width="600" border="2" cellspacing="0" cellpadding="1" >
+    <tr>
+        <th width="200" height="30"  bgcolor="#d1e6f7" align="center" valign="middle"><font size="4">一级目录名称</font>
+        </th>
+        <th width="400" height="30"  bgcolor="#d1e6f7" align="center" valign="middle"><font size="4">操作</font>
+        </th>
+    </tr>
+
+@{
+     
+    foreach (var firTitle in Model)
+    {
+
+            <tr>
+                 <td  height = "25" valign="middle">
+                    <center><strong><font size="3">
+                        <div id=@firTitle.categoryID.ToString()>@Html.DisplayFor(modelItem => firTitle.categoryName)</div>
+                        </font></strong>
+                    </center>
+                 </td>
+                  <td>
+                     <center>
+                           <div id=@divEdit@firTitle.categoryID.ToString()><font size="3">
+                           <a href = "#" id="onclickEdit" onclick="onclickEdit(@firTitle.categoryID.ToString())">编辑</a>|
+                               @Html.ActionLink("删除", "DeleteFirTitle", new { id = firTitle.categoryID }, new { onclick = "javascript:return confirm('确定删除该一级目录及其子目录吗！?');" })|
+                               @Html.ActionLink("编辑子目录", "ShowSecTitle", new { id = firTitle.categoryID, name = firTitle.categoryName })
+                           </font></div>
+                           <div id=@divHidden@firTitle.categoryID.ToString() style="display:none;">
+                           <a href="#" id="onclickSave" onclick="onclickSave(@firTitle.categoryID.ToString())"><font size="3">保存</font></a>&nbsp;<a href="#" id="cancel" onclick="cancel()"><font size="3">取消</font></a>
+                           </div>  
+                     </center>  
+                  </td>                    
+              </tr>      
+    }
+}    
+</table>
+
+<table style="float:right;margin-top:10px;margin-right:350px;"  width="600" border="0" cellspacing="0" cellpadding="1" >
+                <tr>
+                    <td height = "25" valign="middle">
+                        <center><font size="3"><strong>新建一级目录:</strong></font></center>      
+                    </td>
+                    <td>
+                        <center>
+                            <input type="text"  name="input" id="input" style = "height:22;" /> 
+                            <input type="submit" name="sumbit" id="submit" onclick = "create();" style="width:45; height:24; font-size:15px;"/>
+                        </center> 
+                    </td>
+                </tr>
+
+</table>

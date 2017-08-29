@@ -1,0 +1,61 @@
+﻿@model IEnumerable<OldGoodsManage.Models.t_SiteInfo>
+
+@{
+    ViewBag.Title = "Index1";
+    Layout = "~/Views/Shared/_BgLayout.cshtml";
+}
+
+
+<table> 
+<tr>
+<td style="border: solid thin blue "width="1220" height="590"bgcolor="#d1e6f7" >
+
+  @*#d1e6f7#6495ED#4169E1*@
+<table style="border: solid thin blue"  width="800" border="1"  bgcolor="#000000" cellpadding="1" cellspacing="1" align="center">
+ 
+
+@foreach (var item in Model) {
+  
+     <tr>
+       <td width="650" height="60" align="center" bgcolor="#ffffff">
+        <div align="left"style="margin-left:20px" ><strong>公司电话： </strong>
+            @Html.DisplayFor(modelItem => item.companyTel)
+         </div>
+       </td>
+        </tr>
+    
+    
+    <tr>
+         <td width="650" height="50"  bgcolor="#ffffff" >
+        <div align="left" style="margin-left:10px"><strong>公司Email： </strong>
+            @Html.DisplayFor(modelItem => item.companyEmail)
+         </div>
+       </td>
+        </tr>
+      
+     <tr>
+          <td width="650" height="50" align="center" bgcolor="#ffffff">
+         <div align="left" style="margin-left:20px"><strong>公司地址： </strong>
+            @Html.DisplayFor(modelItem => item.companyAddress)
+         </div>
+       </td>
+        </tr>
+     
+    <tr>
+        <td width="650" height="50" align="center" bgcolor="#ffffff" >
+        <div  align="left" style="margin-left:20px" ><strong>公司简介： </strong>
+            @Html.DisplayFor(modelItem => item.companyInfo)
+        </div>
+       </td>
+        </tr>
+    <tr>
+        <td width="650" height="70" align="center" bgcolor="#6495ED">
+            @Html.ActionLink("修改", "Edit", new { id = item.siteInfoID }) 
+        </td>
+    </tr>
+}
+
+</table>
+</td>
+</tr>
+</table>

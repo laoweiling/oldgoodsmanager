@@ -1,0 +1,40 @@
+﻿@{
+    ViewBag.Title = @ViewBag.Title;
+    Layout = "~/Views/Shared/_FgLayout.cshtml";
+}
+@section Styles
+{
+    @Styles.Render("~/style/personalCenter.css")
+}
+
+@RenderSection("scripts", required: false)
+@RenderSection("Styles", required: false)
+@Scripts.Render("~/bundles/jquery")
+@Scripts.Render("~/Scripts/global.js")
+@Scripts.Render("~/Scripts/head.js") 
+ 
+
+
+<div id="divMain">
+<div id="divCustName">
+<h2 class="custName">@Session["CustomerLoginName"] (个人中心)</h2>
+</div>
+<div id="divCustFunc" style="background-color: transparent;">
+<table class="funcTable" >
+    <tr class="funcTr">
+        <td id="info" class="funcTd">@Html.ActionLink("个人资料","PersonalInfo","Customer")</td>
+        <td id="sell" class="funcTd">@Html.ActionLink("我的发布","PersonalSell","Customer")</td>
+        <td id="collect" class="funcTd">@Html.ActionLink("我的收藏","PersonalCollect","Customer")</td>
+        <td id="center" class="funcTd">@Html.ActionLink("消息中心","SystemMessage","Customer")</td>
+    </tr>
+    <tr class="funcTr" >
+        @*<td id="myFriends" class="myFriends">@Html.ActionLink("好友", "MyFriends", "Friends")</td>*@
+    </tr>
+</table>
+</div>
+<div class="divContent">
+@RenderBody()
+</div>
+</div>
+
+

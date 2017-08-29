@@ -1,0 +1,41 @@
+﻿@model OldGoodsManage.Models.t_Message
+
+@{
+    ViewBag.Title = "CustmSendMsg";
+}
+ 
+
+@using (Html.BeginForm()) {
+    @Html.ValidationSummary(true)
+
+    <fieldset>
+        <legend>t_Message</legend>
+
+        <input id="CustmSendCustm" type="radio" name="radioType" value="0" />前台用户
+                <input id="CustmSendUser" type="radio" name="radioType" value="1" />后台用户
+                
+                <p>
+                    接收人:
+                </p>
+                <input id="receiverName" type="text" name="txtReceiverName" />
+                
+            
+                <p>
+                    消息:           
+                </p>
+                <input id="txtMessage" type="text" name="txtMessage" />
+            
+        <p>
+            <input type="submit" value="发送" />
+        </p>
+
+    </fieldset>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

@@ -1,0 +1,101 @@
+﻿@model OldGoodsManage.Models.t_User
+
+@{
+    ViewBag.Title = "后台用户详情信息";
+    Layout = "../Shared/_BgLayout.cshtml";
+}
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>用户信息</title>
+<link href="../../style/user.css"   type="text/css"  rel="Stylesheet" />
+</head>
+<body  >
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+  @using (Html.BeginForm())
+  {
+  <tr >  
+          <td height="62" background="../../Images/nav04.gif">
+		   <table width="98%" border="0" align="center" cellpadding="0" cellspacing="0">
+		    <tr>
+			  <td width="24"><input type="button" name="Submit2" value="返回" class="right-button02" onclick="window.history.go(-1);"/>	</td>
+			  <td width="420">
+                  <input id="Submit1" type="submit" name="submit" class="right-button07" value="添加新用户" />
+              </td>
+		     </tr>  
+           </table>
+          </td>
+  </tr>
+  <tr>
+    <td><table id="subtree1" style="DISPLAY: " width="100%" border="0" cellspacing="0" cellpadding="0">
+
+        <tr>
+          <td><table width="95%" border="0" align="center" cellpadding="0" cellspacing="0">
+	         
+              <tr>
+                <td height="40" class="font42"><table width="100%" border="0" cellpadding="4" cellspacing="1" bgcolor="#464646" class="newfont03">
+
+					<tr align="center" >
+                    <td height="20" colspan="9" bgcolor="#EEEEEE"class="tablestyle_title"> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+					 用户信息列表 </td>
+                    </tr>
+                    <tr>
+				    <td width="15%" height="20" align="right" bgcolor="#FFFFFF">@Html.DisplayNameFor(model => model.userID):</td>
+                    <td width="85%" align="left" bgcolor="#FFFFFF">@Html.DisplayFor(model => model.userID)</td>
+                    </tr>
+                  <tr>
+				    <td width="15%" height="20" align="right" bgcolor="#FFFFFF">@Html.DisplayNameFor(model => model.loginName):</td>
+                    <td width="85%" align="left" bgcolor="#FFFFFF">@Html.DisplayFor(model => model.loginName)</td>
+                    </tr>
+					<tr>
+				    <td height="20" align="right" bgcolor="#FFFFFF">@Html.DisplayNameFor(model => model.userName):</td>
+                    <td bgcolor="#FFFFFF">@Html.DisplayFor(model => model.userName)</td>
+                    </tr>
+                  <tr>
+				    <td height="20" align="right" bgcolor="#FFFFFF">@Html.DisplayNameFor(model=>model.registerTime):</td>
+                    <td bgcolor="#FFFFFF">@Html.DisplayFor(model=>model.registerTime)</td>
+                    </tr>
+					<tr>
+				    <td height="20" align="right" bgcolor="#FFFFFF">角色:</td>
+                    <td bgcolor="#FFFFFF">@ViewBag.roleID</td>
+                    </tr>
+                  <tr>
+				   <td height="20" align="right" bgcolor="#FFFFFF">@Html.DisplayNameFor(model=>model.password):</td>
+                    <td bgcolor="#FFFFFF">@Html.DisplayFor(model=>model.password)</td>
+                    </tr>
+					<tr>
+				    <td align="right" bgcolor="#FFFFFF">性别：</td>
+                    <td bgcolor="#FFFFFF">@ViewBag.sex</td>
+                    </tr>
+                  <tr>
+				    <td align="right" bgcolor="#FFFFFF">@Html.DisplayNameFor(model=>model.address):</td>
+                    <td bgcolor="#FFFFFF">@Html.DisplayFor(model=>model.address)</td>
+                    </tr>
+					<tr>
+				    <td align="right" bgcolor="#FFFFFF">@Html.DisplayNameFor(model=>model.email):</td>
+                    <td bgcolor="#FFFFFF">@Html.DisplayFor(model=>model.email)</td>
+                    </tr>
+                  <tr>
+				    <td align="right" bgcolor="#FFFFFF">@Html.DisplayNameFor(model=>model.tel):</td>
+                    <td bgcolor="#FFFFFF">@Html.DisplayFor(model=>model.tel)</td>
+                    </tr>
+				<tr>
+				    <td align="right" bgcolor="#FFFFFF"style=" height:80px">@Html.DisplayNameFor(model=>model.remarks):</td>
+                    <td bgcolor="#FFFFFF">@Html.DisplayFor(model=>model.remarks)</td>
+                    </tr>
+                </table></td>
+              </tr>
+            </table></td>
+        </tr>
+      </table>
+
+  </td>
+  </tr>
+
+  
+}
+</table>
+</body>
+</html>
+

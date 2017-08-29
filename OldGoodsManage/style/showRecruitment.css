@@ -1,0 +1,43 @@
+﻿
+
+table.imagetable {
+	font-family: verdana,arial,sans-serif;
+	font-size:20px;
+	border-width: 1px;
+	border-color: #999999;
+	border-collapse: collapse;
+}
+table.imagetable th {
+	/*background:#b5cfd2 url('cell-blue.jpg');*/
+	background:#8e0000 url('cell-blue.jpg');
+	border-width: 1px;
+	padding: 8px;
+	border-style: solid;
+	border-color: #999999;
+	width:100px;
+	color:#FFFFFF;
+	
+}
+table.imagetable td {
+	/*background:#dcddc0 url('cell-grey.jpg');*/
+	background:#E8E8E8 url('cell-grey.jpg');
+	border-width: 1px;
+	padding: 8px;
+	border-style: solid;
+	border-color: #999999;
+	width:600px;
+	color:#000000;
+}
+
+#imgbg
+{
+    width:100%;
+    z-index:-1;
+    position:absolute;
+    height:1400px;
+    }
+#divContent
+{
+    padding-top:1000px;
+    padding-left:300px
+    }

@@ -1,0 +1,72 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<TestRun id="21d39d9e-ccbe-4393-84e5-8ec354c72364" name="Administrator@WIN7-20140919ZD 2015-01-29 17:52:29" runUser="WIN7-20140919ZD\Administrator" xmlns="http://microsoft.com/schemas/VisualStudio/TeamTest/2010">
+  <TestSettings name="默认测试设置" id="4dd19203-6e2e-416f-bf3b-fb8eca77addc">
+    <Deployment runDeploymentRoot="Administrator_WIN7-20140919ZD 2015-01-29 17_52_29">
+      <DeploymentItem filename="C:\Program Files\Microsoft ASP.NET\ASP.NET Web Pages\v2.0\Assemblies\WebMatrix.WebData.dll" />
+      <DeploymentItem filename="E:\working\project\OldGoodsManage\OldGoodsManage.Tests\bin\Debug\WebGrease.dll" />
+      <DeploymentItem filename="E:\working\project\OldGoodsManage\OldGoodsManage.Tests\bin\Debug\DotNetOpenAuth.OAuth.dll" />
+      <DeploymentItem filename="E:\working\project\OldGoodsManage\packages\Newtonsoft.Json.4.5.6\lib\net40\Newtonsoft.Json.dll" />
+      <DeploymentItem filename="E:\working\project\OldGoodsManage\OldGoodsManage.Tests\bin\Debug\MvcPager.dll" />
+      <DeploymentItem filename="E:\working\project\OldGoodsManage\packages\Microsoft.AspNet.Razor.2.0.20710.0\lib\net40\System.Web.Razor.dll" />
+      <DeploymentItem filename="E:\working\project\OldGoodsManage\packages\Microsoft.Net.Http.2.0.20710.0\lib\net40\System.Net.Http.dll" />
+      <DeploymentItem filename="E:\working\project\OldGoodsManage\OldGoodsManage.Tests\bin\Debug\DotNetOpenAuth.OAuth.Consumer.dll" />
+      <DeploymentItem filename="E:\working\project\OldGoodsManage\OldGoodsManage.Tests\bin\Debug\DotNetOpenAuth.AspNet.dll" />
+      <DeploymentItem filename="E:\working\project\OldGoodsManage\packages\Microsoft.Net.Http.2.0.20710.0\lib\net40\System.Net.Http.WebRequest.dll" />
+      <DeploymentItem filename="E:\working\project\OldGoodsManage\packages\Microsoft.AspNet.WebPages.2.0.20710.0\lib\net40\System.Web.WebPages.dll" />
+      <DeploymentItem filename="E:\working\project\OldGoodsManage\packages\Microsoft.Web.Infrastructure.1.0.0.0\lib\net40\Microsoft.Web.Infrastructure.dll" />
+      <DeploymentItem filename="C:\Program Files\Microsoft ASP.NET\ASP.NET Web Pages\v2.0\Assemblies\WebMatrix.Data.dll" />
+      <DeploymentItem filename="E:\working\project\OldGoodsManage\OldGoodsManage\bin\OldGoodsManage.dll" />
+      <DeploymentItem filename="E:\working\project\OldGoodsManage\OldGoodsManage.Tests\bin\Debug\DotNetOpenAuth.OpenId.RelyingParty.dll" />
+      <DeploymentItem filename="E:\working\project\OldGoodsManage\packages\Microsoft.AspNet.WebPages.2.0.20710.0\lib\net40\System.Web.Helpers.dll" />
+      <DeploymentItem filename="E:\working\project\OldGoodsManage\OldGoodsManage.Tests\bin\Debug\System.Web.Optimization.dll" />
+      <DeploymentItem filename="E:\working\project\OldGoodsManage\packages\Microsoft.AspNet.Mvc.4.0.20710.0\lib\net40\System.Web.Mvc.dll" />
+      <DeploymentItem filename="E:\working\project\OldGoodsManage\packages\Microsoft.AspNet.WebPages.2.0.20710.0\lib\net40\System.Web.WebPages.Deployment.dll" />
+      <DeploymentItem filename="E:\working\project\OldGoodsManage\OldGoodsManage.Tests\bin\Debug\EntityFramework.dll" />
+      <DeploymentItem filename="E:\working\project\OldGoodsManage\OldGoodsManage.Tests\bin\Debug\Antlr3.Runtime.dll" />
+      <DeploymentItem filename="E:\working\project\OldGoodsManage\OldGoodsManage.Tests\bin\Debug\DotNetOpenAuth.Core.dll" />
+      <DeploymentItem filename="E:\working\project\OldGoodsManage\OldGoodsManage.Tests\bin\Debug\DotNetOpenAuth.OpenId.dll" />
+      <DeploymentItem filename="E:\working\project\OldGoodsManage\packages\Microsoft.AspNet.WebPages.2.0.20710.0\lib\net40\System.Web.WebPages.Razor.dll" />
+      <DeploymentItem filename="C:\Program Files\Microsoft ASP.NET\ASP.NET Web Pages\v2.0\Assemblies\Microsoft.Web.WebPages.OAuth.dll" />
+    </Deployment>
+    <Execution>
+      <TestTypeSpecific />
+      <AgentRule name="Execution Agents">
+      </AgentRule>
+    </Execution>
+  </TestSettings>
+  <Times creation="2015-01-29T17:52:29.1098777+08:00" queuing="2015-01-29T17:52:38.1623955+08:00" start="2015-01-29T17:52:38.4534121+08:00" finish="2015-01-29T17:52:40.4475262+08:00" />
+  <ResultSummary outcome="Failed">
+    <Counters total="1" executed="1" error="0" failed="1" timeout="0" aborted="0" inconclusive="0" passedButRunAborted="0" notRunnable="0" notExecuted="0" disconnected="0" warning="0" passed="0" completed="0" inProgress="0" pending="0" />
+    <RunInfos>
+      <RunInfo computerName="WIN7-20140919ZD" outcome="Warning" timestamp="2015-01-29T17:52:36.6603095+08:00">
+        <Text>警告: 测试运行部署问题: 找不到程序集或模块“log4net”由 测试容器“e:\working\project\oldgoodsmanage\oldgoodsmanage.tests\bin\debug\oldgoodsmanage.tests.dll” 直接或间接引用。</Text>
+      </RunInfo>
+      <RunInfo computerName="WIN7-20140919ZD" outcome="Warning" timestamp="2015-01-29T17:52:36.6603095+08:00">
+        <Text>警告: 测试运行部署问题: 找不到程序集或模块“Org.Mentalis.Security.Cryptography”由 测试容器“e:\working\project\oldgoodsmanage\oldgoodsmanage.tests\bin\debug\oldgoodsmanage.tests.dll” 直接或间接引用。</Text>
+      </RunInfo>
+    </RunInfos>
+  </ResultSummary>
+  <TestDefinitions>
+    <UnitTest name="SetGoodsTypeTest" storage="e:\working\project\oldgoodsmanage\oldgoodsmanage.tests\bin\debug\oldgoodsmanage.tests.dll" id="b7782ca2-ae4e-41c4-927f-9106d80983ad">
+      <Execution id="f70cb46f-914e-41a5-bad9-a4b9f8249a16" />
+      <TestMethod codeBase="E:/working/project/OldGoodsManage/OldGoodsManage.Tests/bin/Debug/OldGoodsManage.Tests.DLL" adapterTypeName="Microsoft.VisualStudio.TestTools.TestTypes.Unit.UnitTestAdapter, Microsoft.VisualStudio.QualityTools.Tips.UnitTest.Adapter, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" className="OldGoodsManage.Tests.GoodsControllerTest, OldGoodsManage.Tests, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" name="SetGoodsTypeTest" />
+      <AspNet webSiteUrl="http://localhost:53689" />
+    </UnitTest>
+  </TestDefinitions>
+  <TestLists>
+    <TestList name="列表中未列出的结果" id="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestList name="所有已加载的结果" id="19431567-8539-422a-85d7-44ee4e166bda" />
+  </TestLists>
+  <TestEntries>
+    <TestEntry testId="b7782ca2-ae4e-41c4-927f-9106d80983ad" executionId="f70cb46f-914e-41a5-bad9-a4b9f8249a16" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+  </TestEntries>
+  <Results>
+    <UnitTestResult executionId="f70cb46f-914e-41a5-bad9-a4b9f8249a16" testId="b7782ca2-ae4e-41c4-927f-9106d80983ad" testName="SetGoodsTypeTest" computerName="WIN7-20140919ZD" startTime="2015-01-29T17:52:38.8904371+08:00" endTime="2015-01-29T17:52:40.4305252+08:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Failed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="f70cb46f-914e-41a5-bad9-a4b9f8249a16">
+      <Output>
+        <ErrorInfo>
+          <Message>指定的 URL (“http://localhost:53689”)未对应于有效的目录。配置为在 IIS 下的 ASP.NET 中运行的测试要求该 URL 有一个有效的目录。该 URL 可能无效或者没有指向有效的 Web 应用程序。</Message>
+        </ErrorInfo>
+      </Output>
+    </UnitTestResult>
+  </Results>
+</TestRun>

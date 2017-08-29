@@ -1,0 +1,31 @@
+﻿@model OldGoodsManage.Models.t_Friends
+
+@{
+    ViewBag.Title = "Edit";
+}
+
+<h2>Edit</h2>
+
+@using (Html.BeginForm()) {
+    @Html.ValidationSummary(true)
+
+    <fieldset>
+        <legend>t_Friends</legend>
+
+        @Html.HiddenFor(model => model.hostId)
+
+        @Html.HiddenFor(model => model.friendsId)
+
+        <p>
+            <input type="submit" value="Save" />
+        </p>
+    </fieldset>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

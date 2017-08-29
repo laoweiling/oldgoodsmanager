@@ -1,0 +1,58 @@
+﻿@using PagedList;
+@using PagedList.Mvc;
+@model IEnumerable<OldGoodsManage.Models.t_Goods>
+
+@{
+    ViewBag.Title = "readGoods";
+    Layout = "~/Views/Shared/_FgLayout.cshtml";
+    string layer = "Rlayer";
+    int num = 1;
+    string idName = "";
+    var goods = Model as IPagedList<OldGoodsManage.Models.t_Goods>;
+}
+<link href="../../style/PagedList.css" rel="stylesheet" type="text/css" />
+<link href="../../style/readGoods.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript" language="javascript">
+//    function onChange() {
+
+//        var ddl = document.getElementById("readGoods")
+//        var index = ddl.selectedIndex;
+//        var Value = ddl.options[index].value;
+//        var Text = ddl.options[index].text;
+//        var url = "/Goods/ReadGoods/" + Value + "/";
+//        window.location.href = url;
+//        ddl.options[index].value = Value;
+//        ddl.options[index].text = Text;
+//    }
+</script> 
+        
+    @foreach (var item in Model)
+    {
+
+        idName = layer + num.ToString();
+        <div id=@idName>
+	        <table>
+	            <tr><td><a><a href="@Url.Action("GoodsDetails", "Goods",new { id = @item.goodsID})"><img src='/@Html.DisplayFor(modelItem => item.goodsImage)' height='200'  width='100%'/></a></td></tr>
+		        <tr><td style="font-weight:bold">@Html.ActionLink(Html.DisplayFor(modelItem => item.goodsTitle).ToString(), "goodsDetails", "Goods", new { id=@item.goodsID})</td></tr>
+                <tr><td style="font-weight:bold">价格:@Html.DisplayFor(modelItem => item.goodsPrice)yuan</td></tr>
+		        <tr><td style="font-weight:bold">位置:@Html.DisplayFor(modelItem => item.tradeAddress)</td></tr>
+	        </table>
+        </div>
+        ++num;
+     }
+
+<br />
+<div id="Rlayer17">
+    <table width="100%" height="20">
+	    <tr>
+             
+            <td width="60%" align="right">
+                @Html.PagedListPager(list: goods, generatePageUrl: page => Url.Action("ReadGoods", new { id = page }))
+           </td>
+                     
+	    </tr>
+   </table>
+ </div>        
+ 
+
+
